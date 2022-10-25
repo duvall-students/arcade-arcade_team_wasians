@@ -1,5 +1,13 @@
 package Games;
 
-public class Galaga {
+/*
+ * @Author: Hunter Copeland
+ */
 
+public class Galaga extends Game{
+
+	public void runGalaga() {
+		launch();
+	}
+	
 }
