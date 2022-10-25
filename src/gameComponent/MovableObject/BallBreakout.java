@@ -1,9 +1,11 @@
 package gameComponent.MovableObject;
+import GamePlaySystems.Player;
+import gameComponent.ControlUnit.BreakOutPaddle;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class BallBreakout extends MoveObject{
+public class BallBreakout extends MovableObject{
 	
 	public static String BALL_IMAGE = "resources/ball.gif";
 	public static final int VELOCITY_NUM_RANGE = 5; 

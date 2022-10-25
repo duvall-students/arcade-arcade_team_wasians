@@ -3,6 +3,7 @@ package gameComponent.ControlUnit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import GamePlaySystems.Player;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,7 +15,7 @@ public class ControlUnit {
 	@FXML
 	protected ImageView image;
 	public int canvasSize;
-	public static final int PLATFORM_SPEED = 10;
+	public static final int OBJECT_SPEED = 10;
 	
 	public ControlUnit(String Image, int canvasSize) {
 		try{
@@ -28,12 +29,28 @@ public class ControlUnit {
 	
 	public void handleKeyInput (KeyCode code, Player player) {
 		if (code == KeyCode.LEFT && image.getX() > 0) {
-			image.setX(image.getX() - PLATFORM_SPEED);
+			image.setX(image.getX() - OBJECT_SPEED);
 			player.setReadytoPlay(true);
 		}
-		else if (code == KeyCode.RIGHT && image.getX()< canvasSize - RECTANGLE_WIDTH) {
-			image.setX(image.getX() + PLATFORM_SPEED);
+		else if (code == KeyCode.RIGHT && image.getX()< canvasSize - image.getFitWidth()) {
+			image.setX(image.getX() + OBJECT_SPEED);
 			player.setReadytoPlay(true);
 		}
+	}
+	
+	public ImageView getShape() {
+		return image;
+	}
+
+	public double getX() {
+		return image.getX();
+	}
+
+	public double getY() {
+		return image.getY();
+	}
+
+	public double getWidth() {
+		return image.getFitWidth();
 	}
 }
