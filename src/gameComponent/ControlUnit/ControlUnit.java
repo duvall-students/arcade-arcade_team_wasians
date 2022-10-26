@@ -1,16 +1,21 @@
 package gameComponent.ControlUnit;
 
+/**
+ * @author chris lee
+ * 
+ */
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import GamePlaySystems.Player;
+import gamePlaySystem.Player;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
 
-public class ControlUnit {
+public abstract class ControlUnit {
 	
 	@FXML
 	protected ImageView image;

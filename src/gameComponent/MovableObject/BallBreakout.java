@@ -1,6 +1,9 @@
 package gameComponent.MovableObject;
-import GamePlaySystems.Player;
+
 import gameComponent.ControlUnit.BreakOutPaddle;
+import gamePlaySystem.Player;
+import gamePlaySystem.LevelSystem.GameLevel;
+
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -141,7 +144,7 @@ public class BallBreakout extends MovableObject{
 	}
 	
 	//if the ball is out of bounds, reset the ball and lose health. 
-	public void handleOutofBounds(int SIZE, Level level, Player player) {
+	public void handleOutofBounds(int SIZE, GameLevel level, Player player) {
 		if (isBallOut(SIZE)) {
 			resetBall(SIZE, (int)(SIZE * level.STARTING_POSITION));
 			player.setReadytoPlay(false);
@@ -156,7 +159,7 @@ public class BallBreakout extends MovableObject{
 	
 	
 	//handles every step of ball movement in a given frame. 
-	public void handleBallMovement(double elapsedTime, double size, BreakOutPaddle platform, Level level, Player player) {
+	public void handleBallMovement(double elapsedTime, double size, BreakOutPaddle platform, GameLevel level, Player player) {
 		move(elapsedTime);
 		bounceOnWalls(size);
 		bounceOnPlatform(platform);
