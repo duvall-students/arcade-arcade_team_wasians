@@ -33,3 +33,4 @@ public class VictoryResponse {
 		// TODO Auto-generated method stub
 		return text;
 	}
+}

@@ -1,3 +1,4 @@
+import java.awt.Canvas;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -23,7 +24,7 @@ import javafx.scene.text.Text;
 //public static final Text powerUpMessage = new Text("dtg");
 //declare text node, use this.text, change the text in the gmae launch method
 
-public class GameScreenMessage {
+public class PlayerMessaging {
 	private Text endMessage = new Text();
 	private Text scoreMessage = new Text();
 	private Text healthMessage = new Text();
@@ -35,7 +36,7 @@ public class GameScreenMessage {
 //		
 //	}
 
-	public GameScreenMessage() {
+	public PlayerMessaging() {
 		// TODO Auto-generated constructor stub
 	}
 
