@@ -1,4 +1,7 @@
-package GamePlaySystems;
+package gamePlaySystem;
+
+import gamePlaySystem.LevelSystem.GameLevel;
+
 /**
  * @author chris lee
  * handles Player information such as health, score, and whether the player is ready to play. 
@@ -28,7 +31,7 @@ public class Player {
 		return health;
 	}
 	
-	public void rechargeHealth(Level level) {
+	public void rechargeHealth(GameLevel level) {
 		health = level.getAllowedHealth();
 	}
 	
