@@ -26,7 +26,7 @@ public class BreakOutPaddle extends ControlUnit{
 	
 	public static final int RECTANGLE_WIDTH = 100;
 	public static final int OBJECT_SPEED = 10;
-	s
+
 	public static final double PLATFORM_HALF_WIDTH = RECTANGLE_WIDTH / 2.0;
 	public static final double PLATFORM_X_LOC = 1.0/2;
 	public static final double PLATFORM_Y_LOC = 8.0/9;
