@@ -22,7 +22,7 @@ public abstract class ControlUnit {
 	public int canvasSize;
 	public static final int OBJECT_SPEED = 10;
 	
-	public ControlUnit(String Image, int canvasSize) {
+	public ControlUnit(String Image, int canvasSize, double x_coordinate, double y_coordinate, double width) {
 		try{
 			image = new ImageView(new Image(new FileInputStream(Image)));
 		}
@@ -30,6 +30,10 @@ public abstract class ControlUnit {
 			System.out.println("Platform Image not found.");
 		}
 		this.canvasSize = canvasSize;
+		
+		image.setX(x_coordinate);
+		image.setY(y_coordinate); 
+		image.setFitWidth(width);
 	}
 	
 	public void handleKeyInput (KeyCode code, Player player) {
