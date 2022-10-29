@@ -4,9 +4,9 @@ import gameComponent.ControlUnit.BreakOutPaddle;
 import gameComponent.MovableObject.BallBreakout;
 import gamePlaySystem.Player;
 import gamePlaySystem.LevelSystem.GameLevel;
-import gamePlaySystem.LevelSystem.GameBreakoutLevel_1;
-import gamePlaySystem.LevelSystem.GameBreakoutLevel_2;
-import gamePlaySystem.LevelSystem.GameBreakoutLevel_3;
+import gamePlaySystem.LevelSystem.BreakoutLevel_1;
+import gamePlaySystem.LevelSystem.BreakoutLevel_2;
+import gamePlaySystem.LevelSystem.BreakoutLevel_3;
 
 import java.util.HashMap;
 import java.util.function.Supplier;
@@ -119,9 +119,9 @@ public class Breakout extends Game{
 		final int LEVEL_2 = 2;
 		final int LEVEL_3 = 3;
 		levelToConstructorNoParameter = new HashMap<Integer, Supplier<GameLevel>>();
-		levelToConstructorNoParameter.put(LEVEL_1, GameBreakoutLevel_1::new);
-		levelToConstructorNoParameter.put(LEVEL_2, GameBreakoutLevel_2::new);
-		levelToConstructorNoParameter.put(LEVEL_3, GameBreakoutLevel_3::new);
+		levelToConstructorNoParameter.put(LEVEL_1, BreakoutLevel_1::new);
+		levelToConstructorNoParameter.put(LEVEL_2, BreakoutLevel_2::new);
+		levelToConstructorNoParameter.put(LEVEL_3, BreakoutLevel_3::new);
 	}
 	
 	public void runBreakout () {
