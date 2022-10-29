@@ -1,4 +1,6 @@
-package Games;
+package games;
+
+import gamePlaySystem.Player;
 
 import java.util.HashMap;
 import java.util.function.Supplier;
@@ -13,7 +15,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-/*
+/**
  * @Author: Hunter Copeland
  */
 
@@ -30,7 +32,7 @@ public class Game extends Application {
 	
 	private Scene myScene;
 	private Stage myStage;
-	private Player player;
+	protected Player player;
 	private Group root;
 	
 	@Override

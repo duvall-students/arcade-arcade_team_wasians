@@ -1,6 +1,6 @@
-package Games;
+package games;
 
-/*
+/**
  * @Author: Hunter Copeland
  */
 

@@ -1,12 +1,12 @@
-package Main;
+package main;
 
 import java.util.Scanner;
 
-import Games.Breakout;
-import Games.Galaga;
-import Games.Game;
+import games.Breakout;
+import games.Galaga;
+import games.Game;
 
-/*
+/**
  * @Author: Hunter Copeland
  * Takes input from the console to determine which game will be played
  */
