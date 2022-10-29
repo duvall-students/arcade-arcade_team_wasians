@@ -24,10 +24,10 @@ public class BreakOutPaddle extends ControlUnit{
 	//private BooleanBinding keyPressed = (leftPressed).or(rightPressed);
 	
 	
-	public static final int RECTANGLE_WIDTH = 100;
+	public static final int PADDLE_WIDTH = 100;
 	public static final int OBJECT_SPEED = 10;
 
-	public static final double PLATFORM_HALF_WIDTH = RECTANGLE_WIDTH / 2.0;
+	public static final double PLATFORM_HALF_WIDTH = PADDLE_WIDTH / 2.0;
 	public static final double PLATFORM_X_LOC = 1.0/2;
 	public static final double PLATFORM_Y_LOC = 8.0/9;
 	public static final Paint PLATFORM_COLOR = Color.NAVY;
@@ -37,11 +37,11 @@ public class BreakOutPaddle extends ControlUnit{
 
 
 	public BreakOutPaddle(int canvasSize) {
-		super(PLATFORM_IMAGE, canvasSize);
+		super(PLATFORM_IMAGE, canvasSize, canvasSize * PLATFORM_X_LOC - PLATFORM_HALF_WIDTH, PLATFORM_Y_LOC * canvasSize, PADDLE_WIDTH);
 		
-		image.setX((canvasSize * PLATFORM_X_LOC) - PLATFORM_HALF_WIDTH);
-		image.setY(PLATFORM_Y_LOC * canvasSize); 
-		image.setFitWidth(RECTANGLE_WIDTH);
+//		image.setX((canvasSize * PLATFORM_X_LOC) - PLATFORM_HALF_WIDTH);
+//		image.setY(PLATFORM_Y_LOC * canvasSize); 
+//		image.setFitWidth(RECTANGLE_WIDTH);
 	}
 
 	
