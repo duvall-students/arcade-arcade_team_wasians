@@ -1,7 +1,7 @@
-package Main;
+package main;
 
 
-/*
+/**
  * @Author: Hunter Copeland
  *  Calls the arcade game to start the program
  */
