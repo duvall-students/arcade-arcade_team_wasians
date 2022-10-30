@@ -1,23 +1,28 @@
 package gameComponent.ControlUnit;
 
+/**
+ * @author chris lee
+ * 
+ */
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import GamePlaySystems.Player;
+import gamePlaySystem.Player;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
 
-public class ControlUnit {
+public abstract class ControlUnit {
 	
 	@FXML
 	protected ImageView image;
 	public int canvasSize;
 	public static final int OBJECT_SPEED = 10;
 	
-	public ControlUnit(String Image, int canvasSize) {
+	public ControlUnit(String Image, int canvasSize, double x_coordinate, double y_coordinate, double width) {
 		try{
 			image = new ImageView(new Image(new FileInputStream(Image)));
 		}
@@ -25,6 +30,10 @@ public class ControlUnit {
 			System.out.println("Platform Image not found.");
 		}
 		this.canvasSize = canvasSize;
+		
+		image.setX(x_coordinate);
+		image.setY(y_coordinate); 
+		image.setFitWidth(width);
 	}
 	
 	public void handleKeyInput (KeyCode code, Player player) {

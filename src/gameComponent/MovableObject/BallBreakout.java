@@ -1,6 +1,9 @@
 package gameComponent.MovableObject;
-import GamePlaySystems.Player;
+
 import gameComponent.ControlUnit.BreakOutPaddle;
+import gamePlaySystem.Player;
+import gamePlaySystem.LevelSystem.GameLevel;
+
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,13 +13,15 @@ public class BallBreakout extends MovableObject{
 	public static String BALL_IMAGE = "resources/ball.gif";
 	public static final int VELOCITY_NUM_RANGE = 5; 
 	public static final double POWER_UP_SPEED_MULTIPLIER = 1.2;
+	public static final int X_START_VELOCITY = 25;
+	public static final int Y_START_VELOCITY = 100;
 	
 	public BallBreakout(int screenSize, int startY) {
 		super(BALL_IMAGE, screenSize, startY);
 		// make sure it stays within the bounds
 		myView.setX(screenSize/2.0);
 		myView.setY(startY);
-		myVelocity = new Point2D(25,100);
+		myVelocity = new Point2D(X_START_VELOCITY, Y_START_VELOCITY);
 	}
 	
 	
@@ -141,7 +146,7 @@ public class BallBreakout extends MovableObject{
 	}
 	
 	//if the ball is out of bounds, reset the ball and lose health. 
-	public void handleOutofBounds(int SIZE, Level level, Player player) {
+	public void handleOutofBounds(int SIZE, GameLevel level, Player player) {
 		if (isBallOut(SIZE)) {
 			resetBall(SIZE, (int)(SIZE * level.STARTING_POSITION));
 			player.setReadytoPlay(false);
@@ -156,7 +161,7 @@ public class BallBreakout extends MovableObject{
 	
 	
 	//handles every step of ball movement in a given frame. 
-	public void handleBallMovement(double elapsedTime, double size, BreakOutPaddle platform, Level level, Player player) {
+	public void handleBallMovement(double elapsedTime, double size, BreakOutPaddle platform, GameLevel level, Player player) {
 		move(elapsedTime);
 		bounceOnWalls(size);
 		bounceOnPlatform(platform);
