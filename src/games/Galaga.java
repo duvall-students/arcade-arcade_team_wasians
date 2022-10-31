@@ -27,16 +27,7 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-public class Galaga extends Application {
-
-	// properties of the canvas
-	public static final Paint BACKGROUND = Color.AZURE;
-	public static final int SIZE = 400;
-
-	// properties of the keyboard key movement
-	public static final int FRAMES_PER_SECOND = 60;
-	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
+public class Galaga extends Application implements Game{
 
 
 	// properties and variables associated with the Level
@@ -45,12 +36,7 @@ public class Galaga extends Application {
 	private int levelUpNum = 1;
 	private HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
 
-	// properties and variables associated with the Level
-	private GameLevel level;
-	private Scene myScene;
-	protected Stage myStage;
-	protected Group root;
-	protected Player player;
+	
 
 	// private List<Brick> bricks;
 
@@ -95,7 +81,7 @@ public class Galaga extends Application {
 	}
 
 	// Chris
-	private void step(double elapsedTime) {
+	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
 		}
