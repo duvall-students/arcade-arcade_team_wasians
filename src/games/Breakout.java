@@ -13,6 +13,7 @@ import java.util.function.Supplier;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -24,8 +25,18 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-public class Breakout extends Game{
+public class Breakout extends Application{
 
+	
+	//properties of the canvas
+		public static final Paint BACKGROUND = Color.AZURE;
+		public static final int SIZE = 400;
+
+		// properties of the keyboard key movement
+		public static final int FRAMES_PER_SECOND = 60;
+		public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
+		public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
+		
 	
 	// the image source of each elements
 	public static final String PLATFORM_IMAGE = "resources/paddle.gif";
@@ -40,17 +51,36 @@ public class Breakout extends Game{
 	
 	// properties and variables associated with the Level
 	private GameLevel level;
-
-	private Stage myStage;
 	private BallBreakout ball;
   	private BreakOutPaddle platform;
+  	private Scene myScene;
+	protected Stage myStage;
+	protected Group root;
+	protected Player player;
 
 	
 	//private List<Brick> bricks;
-	
+  	
+  	@Override
+	public void start(Stage stage){
 
+		myScene = setupGame(SIZE, BACKGROUND);
+		myStage = new Stage();
+		myStage = stage;
+		myStage.setScene(myScene);
+		myStage.show();
+		myScene.setOnKeyPressed(e -> platform.handleKeyInput(e.getCode(), player));
 
-	private Scene setupGame (int size, Paint background) {
+		
+		// attach "game loop" to timeline to play it (basically just calling step() method repeatedly forever)
+		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
+		Timeline animation = new Timeline();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.getKeyFrames().add(frame);
+		animation.play();
+	}
+
+	public Scene setupGame (int size, Paint background) {
 		// create one top level collection to organize the things in the scene
 		root = new Group();
 		// create the bricks in specific level
@@ -63,7 +93,7 @@ public class Breakout extends Game{
 		player = new Player(level.getAllowedHealth());
 
 		// create the ball
-		ball = new BallBreakout(BALL_IMAGE, size, (int)(SIZE * level.STARTING_POSITION));
+		ball = new BallBreakout(size, (int)(SIZE * level.STARTING_POSITION));
 		root.getChildren().add(ball.getView());
     
 		// create the platform
