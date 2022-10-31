@@ -27,19 +27,6 @@ import javafx.util.Duration;
 
 public class Breakout extends Application implements Game{
 
-	// properties of the canvas
-	public static final Paint BACKGROUND = Color.AZURE;
-	public static final int SIZE = 400;
-
-	// properties of the keyboard key movement
-	public static final int FRAMES_PER_SECOND = 60;
-	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
-
-	// the image source of each elements
-	public static final String PLATFORM_IMAGE = "resources/paddle.gif";
-	public static final String WIN_IMAGE = "resources/youwinimage.jpeg";
-	public static String BALL_IMAGE = "resources/ball.gif";
 
 	// properties and variables associated with the Level
 	private final int TOTAL_LEVELS = 3;
