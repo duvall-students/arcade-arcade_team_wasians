@@ -27,7 +27,7 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-public class Galaga extends Application {
+public class Galaga extends Application implements Game{
 
 	// properties of the canvas
 	public static final Paint BACKGROUND = Color.AZURE;
@@ -95,7 +95,7 @@ public class Galaga extends Application {
 	}
 
 	// Chris
-	private void step(double elapsedTime) {
+	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
 		}

@@ -19,20 +19,18 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-public class Game{
-	
-	
-	
-	//Hunter:
-	//Extreneous as of now, once everything is working in both breakout and galaga 
-	// I will clean it up and make this a super class (potentially, will talk to shannon and you guys)
+interface Game {
 
-	
-	
-	
+	public void start(Stage stage);
 
-	public Scene setupGame(int size, Paint background) {
-		return null;
-	}
+	public Scene setupGame(int size, Paint background);
+
+	public void step(double elapsedTime);
+
+	public void moveFrame(double elapsedTime);
+
+	public void levelTransition();
+
+	public void setUpLevelToConstructorNoParameterMap();
 
 }
