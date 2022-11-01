@@ -11,16 +11,14 @@ import javafx.scene.image.ImageView;
 public class BallBreakout extends MovableObject{
 	
 	public static String BALL_IMAGE = "resources/ball.gif";
+	public static final int BALL_SIZE = 20;
 	public static final int VELOCITY_NUM_RANGE = 5; 
 	public static final double POWER_UP_SPEED_MULTIPLIER = 1.2;
 	public static final int X_START_VELOCITY = 25;
 	public static final int Y_START_VELOCITY = 100;
 	
 	public BallBreakout(int screenSize, int startY) {
-		super(BALL_IMAGE, screenSize, startY);
-		// make sure it stays within the bounds
-		myView.setX(screenSize/2.0);
-		myView.setY(startY);
+		super(BALL_IMAGE, screenSize, startY, BALL_SIZE, BALL_SIZE);
 		myVelocity = new Point2D(X_START_VELOCITY, Y_START_VELOCITY);
 	}
 	
