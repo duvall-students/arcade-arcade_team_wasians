@@ -93,7 +93,6 @@ public class Breakout extends Application implements Game{
 		return scene;
 	}
 
-	// Chris
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
