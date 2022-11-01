@@ -8,11 +8,10 @@ import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedRed;
 import gamePlaySystem.Player;
 
-
 /**
  * @author Xu Yan
  * 
- * GameBreakoutLevel_2.java
+ * GalagaLevel_2.java
  * 
  */
 

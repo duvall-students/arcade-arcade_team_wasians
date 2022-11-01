@@ -11,7 +11,7 @@ import gamePlaySystem.Player;
 /**
  * @author Xu Yan
  * 
- * GameBreakoutLevel_1.java
+ * GalagaLevel_1.java
  * 
  */
 
