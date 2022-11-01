@@ -12,6 +12,7 @@ import gamePlaySystem.Player;
 import java.util.Random;
 import java.util.Arrays;
 import javafx.scene.Group;
+import javafx.stage.Stage;
 
 /**
  * @author Blake B. Byerly and Xu Yan
@@ -54,7 +55,7 @@ public abstract class GameLevel {
     }
     
     // create the NPC based on its type
-    protected abstract void createNPCs(Group root);
+    public abstract void createNPCs(Group root);
     
     // load the NPC on the screen
 //    protected abstract void generateNPCs(int col, int row, Group root, String npcType);
@@ -94,5 +95,10 @@ public abstract class GameLevel {
 	public boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}
+
+	public abstract int getBallStartingPosition();
+
+	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball,
+			Player player);
 	
 }
