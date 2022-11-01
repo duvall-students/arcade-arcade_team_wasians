@@ -19,7 +19,7 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-interface Game {
+public interface Game {
 
 	// properties of the canvas
 	public static final Paint BACKGROUND = Color.AZURE;
@@ -44,8 +44,8 @@ interface Game {
 
 	public void moveFrame(double elapsedTime);
 
-	public void levelTransition();
+//	public void levelTransition();
 
-	public void setUpLevelToConstructorNoParameterMap();
+//	public void setUpLevelToConstructorNoParameterMap();
 
 }

@@ -16,11 +16,11 @@ import gamePlaySystem.Player;
 /**
  * @author Xu Yan
  * 
- * GameBreakoutLevel_3.java
+ * GalagaLevel_3.java
  * 
  */
 
-public class GalagaLevel_3 extends GameLevel {
+public class GalagaLevel_3 extends GalagaLevels {
 
 	private static final int BRICKS_Y_OFFSET = 10;
 	private static final int LEVEL = 1;
@@ -40,39 +40,27 @@ public class GalagaLevel_3 extends GameLevel {
 		// super parameters: (brickRows, eachRowBrick, unbreakableBricksQty, emptySpaceQty, bricksYOffset)
 		super(BRICKS_Y_OFFSET, LEVEL);
 		allNonPowerUpWingeds = new ArrayList<>();
-		STARTING_POSITION = 1.8/4.0;
 		allowedHealth = 3;
 		gameNPCLayout = LAYOUT_L3;
 		eachRowNPCs = LAYOUT_L3[0].length;
 	}
 	
-    // create the winged based on its type
-    protected void createWingeds(Group root) {
-    	for (int row = 0; row < gameNPCLayout.length; row++) {
-    		for (int col = 0; col < gameNPCLayout[row].length; col++) {
-    			String typeStr = integerToStringOfEachWingedType.get(gameNPCLayout[row][col]);
-    			if (!typeStr.equals(EMPTY)) {
-    				generateWingeds(col, row, root, typeStr);
-    			}
-    		}
-    	}
-    }
-    
 	// load the winged on the screen
-	private void generateWingeds(int col, int row, Group root, String wingedType) {
+	@Override
+	protected void generateWingeds(int col, int row, Group root, String wingedType) {
 		final String POWER_UP_WINGED_IMAGE_SOURCE = "resources/scorepower.png";
 		final String YELLOW_WINGED_IMAGE_SOURCE = "resources/winged1.png";
 		final String RED_WINGED_IMAGE_SOURCE = "resources/winged2.png";
 		final String GREEN_WINGED_IMAGE_SOURCE = "resources/winged3.png";
 		
 		if (wingedType.equals(POWER_UP)) {
-			npc = new NPCGalagaWingedPowerUp(eachRowNPCs, bricksOffsetFromTop, POWER_UP_WINGED_IMAGE_SOURCE);
+			npc = new NPCGalagaWingedPowerUp(eachRowNPCs, npcsOffsetFromTop, POWER_UP_WINGED_IMAGE_SOURCE);
 		} else if (wingedType.equals(GREEN)) {
-			npc = new NPCGalagaWingedGreen(eachRowNPCs, bricksOffsetFromTop, GREEN_WINGED_IMAGE_SOURCE);
+			npc = new NPCGalagaWingedGreen(eachRowNPCs, npcsOffsetFromTop, GREEN_WINGED_IMAGE_SOURCE);
 		} else if (wingedType.equals(RED)) {
-			npc = new NPCGalagaWingedRed(eachRowNPCs, bricksOffsetFromTop, RED_WINGED_IMAGE_SOURCE);
+			npc = new NPCGalagaWingedRed(eachRowNPCs, npcsOffsetFromTop, RED_WINGED_IMAGE_SOURCE);
 		} else if (wingedType.equals(YELLOW)) {
-			npc = new NPCGalagaWingedYellow(eachRowNPCs, bricksOffsetFromTop, YELLOW_WINGED_IMAGE_SOURCE);
+			npc = new NPCGalagaWingedYellow(eachRowNPCs, npcsOffsetFromTop, YELLOW_WINGED_IMAGE_SOURCE);
 		}
 		npc.setNPC(col, row);
 		wingedsListOfEachWingedType.get(wingedType).add(npc);
@@ -84,8 +72,8 @@ public class GalagaLevel_3 extends GameLevel {
 	}
 	
 	// deal with the collision of the bullet and winged
-	protected void collideWithWingeds(Group root, BallBreakout ball, Player player) {
-		final boolean isPaddle = false;
+	@Override
+	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) {
 		for (GameNPC npc: allNPCs) {
 			if (ball.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				allNPCs.remove(npc);
@@ -95,7 +83,6 @@ public class GalagaLevel_3 extends GameLevel {
 				root.getChildren().remove(npc.getNPC());
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
-//					ball.powerUpBall();
 				}
 			}
 			winCheckForLevel();
