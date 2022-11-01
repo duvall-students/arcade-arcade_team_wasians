@@ -9,20 +9,16 @@ import javafx.geometry.Point2D;
  * 
  */
 
-public class NPCGalagaWingedGreen extends GameNPC {
+public class NPCGalagaWingedGreen extends NPCGalaga {
 
 	public NPCGalagaWingedGreen(int eachRowWingeds, int wingedsOffsetFromTop, String imageSource) {
 		super(eachRowWingeds, wingedsOffsetFromTop);
-		final int GENERAL_WINGED_HEIGHT;
-		GENERAL_WINGED_HEIGHT = GENERAL_NPC_WIDTH;
-		GENERAL_NPC_HEIGHT = GENERAL_WINGED_HEIGHT;
-		NPC_IMAGE_HEIGHT = GENERAL_NPC_HEIGHT;
 		npcImageSrc = imageSource;
 		wingedVelocity = new Point2D(0, -20);
 	}
 	
-	protected void move (double elapsedTime) {
-		npc.setY(npc.getY() + wingedVelocity.getY() * elapsedTime);
-	}
+//	protected void move (double elapsedTime) {
+//		npc.setY(npc.getY() + wingedVelocity.getY() * elapsedTime);
+//	}
 	
 }
