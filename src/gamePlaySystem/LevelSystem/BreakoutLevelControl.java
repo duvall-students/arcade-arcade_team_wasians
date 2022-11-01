@@ -29,7 +29,9 @@ public class BreakoutLevelControl extends GameLevelControl {
 			gameLevel.collideWithNPCs(root, ball, player);
 		} catch (Exception e) {}
 		
-		levelTransition(myStage, player);
+		if (gameLevel.getIsWinningAtEachLevel()) {
+			levelTransition(myStage, player);
+		}
 	}
 	
 	@Override
@@ -41,7 +43,6 @@ public class BreakoutLevelControl extends GameLevelControl {
 		levelNum += levelUpNum;
 		player.setReadytoPlay(false);
 		myStage.close();
-//		Breakout.start(new Stage());
 	}
 	
 	@Override
@@ -60,7 +61,8 @@ public class BreakoutLevelControl extends GameLevelControl {
 	}
 	
 	public boolean checkIsWinInEachLevel() {
-		return true;
+//		return gameLevel.isWinnerInLevel;
+		return gameLevel.getIsWinningAtEachLevel();
 	}
 	
 }
