@@ -1,12 +1,14 @@
 package gamePlaySystem.LevelSystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javafx.scene.Group;
 
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
-import javafx.scene.Group;
 
 /**
  * @author Xu Yan
@@ -38,6 +40,7 @@ public abstract class BreakoutLevels extends GameLevel {
 		super(bricksYOffsetInLevel, levelNum);
 		TOTAL_LEVELS = 3;
 		// initialize the setup of collections
+		initializeBricksListOfEachBrickType();
 		setBricksListOfEachBrickType();
 		setPowerUpBrickSettingsInLevels();
 		setIntegerToStringOfEachBrickType();
@@ -45,7 +48,7 @@ public abstract class BreakoutLevels extends GameLevel {
 	
 	// create the brick based on its type
 	@Override
-	protected void createNPCs(Group root) {
+	public void createNPCs(Group root) {
 		for (int row = 0; row < gameNPCLayout.length; row++) {
     		for (int col = 0; col < gameNPCLayout[row].length; col++) {
     			String typeStr = integerToStringOfEachBrickType.get(gameNPCLayout[row][col]);
@@ -85,6 +88,12 @@ public abstract class BreakoutLevels extends GameLevel {
 		}
 	}
 	
+	private void initializeBricksListOfEachBrickType() {
+		powerUpBricks = new ArrayList<>();
+		breakableBricks = new ArrayList<>();
+		unbreakableBricks = new ArrayList<>();
+	}
+	
 	// associate the level with its particular power-up in Breakout Game
 	private void setPowerUpBrickSettingsInLevels() {
 		// variables about the level
@@ -114,7 +123,7 @@ public abstract class BreakoutLevels extends GameLevel {
 		integerToStringOfEachBrickType.put(3, UNBREAKABLE);
 	}
 	
-	protected double getBallStartingPositionNow() {
+	public double getBallStartingPositionNow() {
 		return STARTING_POSITION;
 	}
 

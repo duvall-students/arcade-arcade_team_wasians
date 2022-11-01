@@ -12,7 +12,7 @@ import gamePlaySystem.Player;
 /**
  * @author Xu Yan
  * 
- * GameBreakoutLevel_3.java
+ * BreakoutLevel_3.java
  * 
  */
 

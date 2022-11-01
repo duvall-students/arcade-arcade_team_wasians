@@ -1,18 +1,18 @@
 package gamePlaySystem.LevelSystem;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.function.Supplier;
+import java.util.Random;
+import java.util.Arrays;
+
+import javafx.scene.Group;
+import javafx.stage.Stage;
 
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
-
-import java.util.Random;
-import java.util.Arrays;
-import javafx.scene.Group;
-import javafx.stage.Stage;
 
 /**
  * @author Blake B. Byerly and Xu Yan
@@ -46,7 +46,7 @@ public abstract class GameLevel {
  	private boolean hasPrinted;
     
     protected GameLevel(int npcsYOffsetInLevel, int levelNum) {
-    	// initialize objects
+    	// initialize lists
     	allNPCs = new ArrayList<>();
     	// assign variables
     	npcsOffsetFromTop = npcsYOffsetInLevel;
@@ -85,7 +85,8 @@ public abstract class GameLevel {
 	private boolean isLevelAccomplished() {
 		final int ALL_CLEAR = 0;
 //		return breakableBricks.size() == ALL_CLEAR;
-		return true;
+//		return true;
+		return false;
 	}
 	
 	public boolean getIsWinInEachLevel() {
@@ -96,9 +97,8 @@ public abstract class GameLevel {
 		return currentLevel == TOTAL_LEVELS;
 	}
 
-	public abstract int getBallStartingPosition();
+//	public abstract int getBallStartingPosition();
 
-	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball,
-			Player player);
+//	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player);
 	
 }

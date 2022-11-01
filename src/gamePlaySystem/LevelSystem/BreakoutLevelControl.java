@@ -9,6 +9,13 @@ import javafx.stage.Stage;
 import gameComponent.MovableObject.BallBreakout;
 import gamePlaySystem.Player;
 
+/**
+ * @author Xu Yan
+ * 
+ * BreakoutLevelControl.java
+ * 
+ */
+
 public class BreakoutLevelControl extends GameLevelControl {
 	
 	public BreakoutLevelControl(Group root, int levelNum) {

@@ -7,7 +7,7 @@ package gameComponent.NPCObject;
  * 
  */
 
-public class NPCBreakoutBrickBreakable extends GameNPC {
+public class NPCBreakoutBrickBreakable extends NPCBreakout {
 	
 	public NPCBreakoutBrickBreakable(int eachRowBricks, int bricksOffsetFromTop, String imageSource) {
 		super(eachRowBricks, bricksOffsetFromTop);
