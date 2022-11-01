@@ -26,6 +26,7 @@ public class BreakOutPaddle extends ControlUnit{
 	
 	
 	public static final int PADDLE_WIDTH = 100;
+	public static final int PADDLE_HEIGHT = 5;
 	public static final int OBJECT_SPEED = 10;
 	public static final double PLATFORM_HALF_WIDTH = PADDLE_WIDTH / 2.0;
 
@@ -38,7 +39,7 @@ public class BreakOutPaddle extends ControlUnit{
 
 
 	public BreakOutPaddle(int canvasSize) {
-		super(PLATFORM_IMAGE, canvasSize, canvasSize * PLATFORM_X_LOC - PLATFORM_HALF_WIDTH, PLATFORM_Y_LOC * canvasSize, PADDLE_WIDTH);
+		super(PLATFORM_IMAGE, canvasSize, canvasSize * PLATFORM_X_LOC - PLATFORM_HALF_WIDTH, PLATFORM_Y_LOC * canvasSize, PADDLE_WIDTH, PADDLE_HEIGHT);
 		
 //		image.setX((canvasSize * PLATFORM_X_LOC) - PLATFORM_HALF_WIDTH);
 //		image.setY(PLATFORM_Y_LOC * canvasSize); 
