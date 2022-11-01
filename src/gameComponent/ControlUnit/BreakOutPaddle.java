@@ -26,7 +26,7 @@ public class BreakOutPaddle extends ControlUnit{
 	
 	
 	public static final int PADDLE_WIDTH = 100;
-	public static final int PADDLE_HEIGHT = 5;
+	public static final int PADDLE_HEIGHT = 10;
 	public static final int OBJECT_SPEED = 10;
 	public static final double PLATFORM_HALF_WIDTH = PADDLE_WIDTH / 2.0;
 
