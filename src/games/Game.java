@@ -19,7 +19,7 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-interface Game {
+public interface Game {
 
 	// properties of the canvas
 	public static final Paint BACKGROUND = Color.AZURE;
