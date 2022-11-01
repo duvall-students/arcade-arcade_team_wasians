@@ -43,7 +43,7 @@ public abstract class GalagaLevels extends GameLevel {
 	
 	// create the winged based on its type
 	@Override
-	protected void createNPCs(Group root) {
+	public void createNPCs(Group root) {
 		for (int row = 0; row < gameNPCLayout.length; row++) {
 			for (int col = 0; col < gameNPCLayout[row].length; col++) {
 				String typeStr = integerToStringOfEachWingedType.get(gameNPCLayout[row][col]);

@@ -9,6 +9,9 @@ import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.BreakoutLevel_1;
 import gamePlaySystem.LevelSystem.BreakoutLevel_2;
 import gamePlaySystem.LevelSystem.BreakoutLevel_3;
+import gamePlaySystem.LevelSystem.GalagaLevel_1;
+import gamePlaySystem.LevelSystem.GalagaLevel_2;
+import gamePlaySystem.LevelSystem.GalagaLevel_3;
 
 import java.util.HashMap;
 import java.util.function.Supplier;
@@ -35,13 +38,15 @@ public class Breakout extends Application implements Game{
 	private int levelUpNum = 1;
 
 	// properties and variables associated with the Level
-	private BreakoutLevelControl level;
+	private GameLevel level;
 	private BallBreakout ball;
 	private BreakOutPaddle platform;
 	private Scene myScene;
 	protected Stage myStage;
 	protected Group root;
 	protected Player player;
+	
+	private HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
 
 	// private List<Brick> bricks;
 
@@ -68,10 +73,10 @@ public class Breakout extends Application implements Game{
 		// create one top level collection to organize the things in the scene
 		root = new Group();
 		// create the bricks in specific level
-		level = new BreakoutLevelControl(root, levelNum);
+		level.createNPCs(root);
 
 		// create player with the particular lives in each level
-		player = new Player(level.getPlayerAllowedHealth());
+		player = new Player(level.getAllowedHealth());
 
 		// create the ball
 		ball = new BallBreakout(size, (int) (SIZE * level.getBallStartingPosition()));
@@ -103,7 +108,7 @@ public class Breakout extends Application implements Game{
 		// Move to the next level if the player achieves the winning goal in the
 		// specific level; Or print the winning message and terminate the game when the
 		// player passes all levels
-		if (level.checkIsWinInEachLevel()) {
+		if (level.getIsWinInEachLevel()) {
 			levelNum += levelUpNum;
 			start(new Stage());
 		}
@@ -111,6 +116,30 @@ public class Breakout extends Application implements Game{
 
 	public void runBreakout() {
 		launch();
+	}
+
+	@Override
+	public void levelTransition() {
+		if (level.areAllLevelsPassed(levelNum)) {
+			level.winningMessage();
+			System.exit(0);
+		}
+		levelNum += levelUpNum;
+		player.setReadytoPlay(false);
+		myStage.close();
+		start(new Stage());
+		
+	}
+
+	public void setUpLevelToConstructorNoParameterMap() {
+		final int LEVEL_1 = 1;
+		final int LEVEL_2 = 2;
+		final int LEVEL_3 = 3;
+		levelToConstructorNoParameter = new HashMap<Integer, Supplier<GameLevel>>();
+		levelToConstructorNoParameter.put(LEVEL_1, BreakoutLevel_1::new);
+		levelToConstructorNoParameter.put(LEVEL_2, BreakoutLevel_2::new);
+		levelToConstructorNoParameter.put(LEVEL_3, BreakoutLevel_3::new);
+		
 	}
 
 }
