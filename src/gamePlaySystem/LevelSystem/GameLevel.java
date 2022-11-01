@@ -42,7 +42,7 @@ public abstract class GameLevel {
     // variables associated with the player
     protected int allowedHealth;
     // variables that declare victory
- 	private boolean isWinnerInLevel;
+ 	protected boolean isWinnerInLevel;
  	private boolean hasPrinted;
     
     protected GameLevel(int npcsYOffsetInLevel, int levelNum) {
@@ -67,14 +67,9 @@ public abstract class GameLevel {
 		return allowedHealth;
 	}
 	
-	protected void winCheckForLevel() {
-		if (isLevelAccomplished()) {
-			isWinnerInLevel = true;
-			winningMessage();
-		}
-	}
+	protected abstract void winCheckForLevel();
 	
-	// displays winning message to the screen
+	// displays winning message to the screen when the player passed all levels in each game
     public void winningMessage() {
     	if (isWinnerInLevel && !hasPrinted) {
     		System.out.println("You win!");
@@ -82,23 +77,12 @@ public abstract class GameLevel {
     	}
     }
 	
-	private boolean isLevelAccomplished() {
-		final int ALL_CLEAR = 0;
-//		return breakableBricks.size() == ALL_CLEAR;
-//		return true;
-		return false;
-	}
-	
-	public boolean getIsWinInEachLevel() {
+	public boolean getIsWinningAtEachLevel() {
 		return isWinnerInLevel;
 	}
 	
 	public boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}
-
-//	public abstract int getBallStartingPosition();
-
-//	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player);
 	
 }
