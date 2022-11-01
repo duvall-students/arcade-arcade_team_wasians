@@ -68,5 +68,10 @@ public class GalagaLevel_1 extends GalagaLevels {
 			winCheckForLevel();
 		}
 	}
+
+	@Override
+	protected void winCheckForLevel() {
+		
+	}
 	
 }
