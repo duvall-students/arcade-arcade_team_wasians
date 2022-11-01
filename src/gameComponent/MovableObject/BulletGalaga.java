@@ -8,13 +8,7 @@ public class BulletGalaga extends MovableObject{
 	public static int BULLET_WIDTH = 3;
 
 	public BulletGalaga(int screenSize, int startY) {
-		super(BULLET_IMAGE, screenSize, startY);
-		// make sure it stays within the bounds
-		myView.setFitWidth(BULLET_WIDTH);
-		myView.setFitHeight(BULLET_HEIGHT);
-		
-		myView.setX(screenSize/2.0);
-		myView.setY(startY);
+		super(BULLET_IMAGE, screenSize, startY, BULLET_WIDTH, BULLET_HEIGHT);
 		myVelocity = new Point2D(0,100);
 	}
 	
