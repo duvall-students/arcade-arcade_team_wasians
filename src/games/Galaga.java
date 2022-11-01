@@ -8,6 +8,7 @@ import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gamePlaySystem.Player;
+import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.BreakoutLevel_1;
 import gamePlaySystem.LevelSystem.BreakoutLevel_2;
 import gamePlaySystem.LevelSystem.BreakoutLevel_3;
@@ -34,12 +35,12 @@ public class Galaga extends Application implements Game{
 
 
 	// properties and variables associated with the Level
-	private final int TOTAL_LEVELS = 3;
+//	private final int TOTAL_LEVELS = 3;
+//	private HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
 	private int levelNum = 1;
 	private int levelUpNum = 1;
-	private HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
 	
-	private GameLevel level;
+	private GalagaLevelControl level;
 
 	private Stage myStage;
 	private Scene myScene;
@@ -72,12 +73,12 @@ public class Galaga extends Application implements Game{
 		// create one top level collection to organize the things in the scene
 		root = new Group();
 		
-		// create the bricks in specific level
-		// create the bricks in specific level
-		level.createNPCs(root);
+		// create the winged layout in specific level
+//		level.createNPCs(root);
+		level = new GalagaLevelControl(root, levelNum);
 
 		// create player with the particular lives in each level
-		player = new Player(level.getAllowedHealth());
+		player = new Player(level.getPlayerAllowedHealth());
 		
 		//create the ship
 		ship = new GalagaShip(size);
@@ -105,29 +106,6 @@ public class Galaga extends Application implements Game{
 		ship.handleKeyInput(null, player);
 		
 		
-	}
-
-	// Blake
-	public void levelTransition() {
-		if (level.areAllLevelsPassed(levelNum)) {
-			level.winningMessage();
-			System.exit(0);
-		}
-		levelNum += levelUpNum;
-		player.setReadytoPlay(false);
-		myStage.close();
-		start(new Stage());
-	}
-
-	// Brandon
-	public void setUpLevelToConstructorNoParameterMap() {
-		final int LEVEL_1 = 1;
-		final int LEVEL_2 = 2;
-		final int LEVEL_3 = 3;
-		levelToConstructorNoParameter = new HashMap<Integer, Supplier<GameLevel>>();
-		levelToConstructorNoParameter.put(LEVEL_1, GalagaLevel_1::new);
-		levelToConstructorNoParameter.put(LEVEL_2, GalagaLevel_2::new);
-		levelToConstructorNoParameter.put(LEVEL_3, GalagaLevel_3::new);
 	}
 
 	public void runGalaga() {

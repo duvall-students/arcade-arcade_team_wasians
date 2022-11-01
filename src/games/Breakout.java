@@ -38,7 +38,7 @@ public class Breakout extends Application implements Game{
 	private int levelUpNum = 1;
 
 	// properties and variables associated with the Level
-	private GameLevel level;
+	private BreakoutLevelControl level;
 	private BallBreakout ball;
 	private BreakOutPaddle platform;
 	private Scene myScene;
@@ -72,11 +72,13 @@ public class Breakout extends Application implements Game{
 	public Scene setupGame(int size, Paint background) {
 		// create one top level collection to organize the things in the scene
 		root = new Group();
-		// create the bricks in specific level
-		level.createNPCs(root);
+		// create the bricks layout in specific level
+//		level.createNPCs(root);
+		level = new BreakoutLevelControl(root, levelNum);
 
 		// create player with the particular lives in each level
-		player = new Player(level.getAllowedHealth());
+//		player = new Player(level.getAllowedHealth());
+		player = new Player(level.getPlayerAllowedHealth());
 
 		// create the ball
 		ball = new BallBreakout(size, (int) (SIZE * level.getBallStartingPosition()));
@@ -108,7 +110,7 @@ public class Breakout extends Application implements Game{
 		// Move to the next level if the player achieves the winning goal in the
 		// specific level; Or print the winning message and terminate the game when the
 		// player passes all levels
-		if (level.getIsWinInEachLevel()) {
+		if (level.checkIsWinInEachLevel()) {
 			levelNum += levelUpNum;
 			start(new Stage());
 		}
@@ -116,30 +118,6 @@ public class Breakout extends Application implements Game{
 
 	public void runBreakout() {
 		launch();
-	}
-
-	@Override
-	public void levelTransition() {
-		if (level.areAllLevelsPassed(levelNum)) {
-			level.winningMessage();
-			System.exit(0);
-		}
-		levelNum += levelUpNum;
-		player.setReadytoPlay(false);
-		myStage.close();
-		start(new Stage());
-		
-	}
-
-	public void setUpLevelToConstructorNoParameterMap() {
-		final int LEVEL_1 = 1;
-		final int LEVEL_2 = 2;
-		final int LEVEL_3 = 3;
-		levelToConstructorNoParameter = new HashMap<Integer, Supplier<GameLevel>>();
-		levelToConstructorNoParameter.put(LEVEL_1, BreakoutLevel_1::new);
-		levelToConstructorNoParameter.put(LEVEL_2, BreakoutLevel_2::new);
-		levelToConstructorNoParameter.put(LEVEL_3, BreakoutLevel_3::new);
-		
 	}
 
 }

@@ -1,13 +1,15 @@
 package gamePlaySystem.LevelSystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 
+import javafx.scene.Group;
+
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
-import javafx.scene.Group;
 
 /**
  * @author Xu Yan
@@ -36,6 +38,7 @@ public abstract class GalagaLevels extends GameLevel {
 		super(wingedsYOffsetInLevel, levelNum);
 		TOTAL_LEVELS = 3;
 		// initialize the setup of collections
+		initializeWingedsListOfEachWingedType();
 		setWingedsListOfEachWingedType();
 		setPowerUpWingedSettingsInLevels();
 		setIntegerToStringOfEachWingedType();
@@ -56,6 +59,13 @@ public abstract class GalagaLevels extends GameLevel {
 	
 	// load the winged on the screen
 	protected abstract void generateWingeds(int col, int row, Group root, String wingedType);
+	
+	private void initializeWingedsListOfEachWingedType() {
+		redWinged = new ArrayList<>();
+		greenWinged = new ArrayList<>();
+		yellowWinged = new ArrayList<>();
+		powerUpWinged = new ArrayList<>();
+	}
 	
 	// associate the level with its designated power-up in Galaga Game
 	private void setPowerUpWingedSettingsInLevels() {

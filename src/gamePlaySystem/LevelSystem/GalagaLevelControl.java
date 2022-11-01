@@ -3,10 +3,18 @@ package gamePlaySystem.LevelSystem;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
-import gameComponent.MovableObject.BallBreakout;
-import gamePlaySystem.Player;
 import javafx.scene.Group;
 import javafx.stage.Stage;
+
+import gameComponent.MovableObject.BallBreakout;
+import gamePlaySystem.Player;
+
+/**
+ * @author Xu Yan
+ * 
+ * GalagaLevelControl.java
+ * 
+ */
 
 public class GalagaLevelControl extends GameLevelControl {
 

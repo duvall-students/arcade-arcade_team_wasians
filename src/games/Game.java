@@ -44,8 +44,8 @@ public interface Game {
 
 	public void moveFrame(double elapsedTime);
 
-	public void levelTransition();
+//	public void levelTransition();
 
-	public void setUpLevelToConstructorNoParameterMap();
+//	public void setUpLevelToConstructorNoParameterMap();
 
 }
