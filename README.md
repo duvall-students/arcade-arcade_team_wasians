@@ -1,6 +1,6 @@
 # arcade
 
-Team names:Team_wasians
+Team names: Team_wasians
 
 Project description: Arcade Program in which the user can choose to play either Break Out or Galaga
 

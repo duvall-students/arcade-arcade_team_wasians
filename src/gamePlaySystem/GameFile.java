@@ -58,7 +58,7 @@ public class GameFile {
 	}
 
 	// read the old score in the score record file and get the highest score
-	private void getTheHighestScore() {
+	private void getHighestScore() {
 		
 	}
 
