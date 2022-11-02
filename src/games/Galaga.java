@@ -89,7 +89,6 @@ public class Galaga extends Application implements Game{
 		return scene;
 	}
 
-	// Chris
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
@@ -104,8 +103,6 @@ public class Galaga extends Application implements Game{
 		 * 		- collision with the bad guys
 		 */
 		ship.handleKeyInput(null, player);
-		
-		
 	}
 
 	public void runGalaga() {

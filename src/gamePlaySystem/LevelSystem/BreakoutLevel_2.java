@@ -59,4 +59,14 @@ public class BreakoutLevel_2 extends BreakoutLevels {
 		root.getChildren().add(npc.getNPC());
 	}
 	
+	@Override
+	protected void winCheckForLevel() {
+		final int ALL_CLEAR = 0;
+		boolean isLevelAccomplished = breakableBricks.size() == ALL_CLEAR;
+		if (isLevelAccomplished) {
+			isWinnerInLevel = true;
+			winningMessage();
+		}
+	}
+	
 }

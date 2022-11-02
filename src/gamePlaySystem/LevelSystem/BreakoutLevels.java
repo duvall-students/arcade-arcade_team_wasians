@@ -88,6 +88,10 @@ public abstract class BreakoutLevels extends GameLevel {
 		}
 	}
 	
+	public double getBallStartingPositionNow() {
+		return STARTING_POSITION;
+	}
+	
 	private void initializeBricksListOfEachBrickType() {
 		powerUpBricks = new ArrayList<>();
 		breakableBricks = new ArrayList<>();
@@ -123,8 +127,4 @@ public abstract class BreakoutLevels extends GameLevel {
 		integerToStringOfEachBrickType.put(3, UNBREAKABLE);
 	}
 	
-	public double getBallStartingPositionNow() {
-		return STARTING_POSITION;
-	}
-
 }
