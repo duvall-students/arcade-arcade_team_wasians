@@ -2,10 +2,10 @@ package gamePlaySystem.LevelSystem;
 
 import javafx.scene.Group;
 
-import gameComponent.MovableObject.BallBreakout;
-import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCBreakoutBrickBreakable;
 import gameComponent.NPCObject.NPCBreakoutBrickPowerUp;
+import gameComponent.MovableObject.BallBreakout;
+import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
 
 /**

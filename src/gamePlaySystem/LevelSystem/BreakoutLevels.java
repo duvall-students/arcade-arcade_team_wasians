@@ -64,7 +64,7 @@ public abstract class BreakoutLevels extends GameLevel {
 	protected abstract void generateBricks(int col, int row, Group root, String brickType);
 	
 	// deal with the collision of the ball and bricks
-	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) {
+	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) throws InterruptedException {
 		final boolean BREAKABLE = true;
 		final boolean UNBREAKABLE = false;
 		final boolean isNotPaddle = false;
@@ -86,6 +86,7 @@ public abstract class BreakoutLevels extends GameLevel {
 				}
 				ball.bounceOnRectangle(npc.getNPCImageView(), isNotPaddle);
 			}
+			PlayerMessaging.displayDeathMessage(player);
 			winCheckForLevel();
 		}
 	}
@@ -102,7 +103,7 @@ public abstract class BreakoutLevels extends GameLevel {
 		unbreakableBricks = new ArrayList<>();
 	}
 	
-	// associate the level with its particular power-up in Breakout Game
+	// associate the level with its particular power-up type in Breakout Game
 	private void setPowerUpBrickSettingsInLevels() {
 		final int LEVEL_1 = 1;
 		final int LEVEL_2 = 2;
