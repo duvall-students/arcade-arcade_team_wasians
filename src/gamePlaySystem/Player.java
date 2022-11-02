@@ -1,6 +1,8 @@
 package gamePlaySystem;
 
 import gamePlaySystem.LevelSystem.GameLevel;
+import javafx.scene.text.Text;
+import gamePlaySystem.PlayerMessaging;
 
 /**
  * @author chris lee
@@ -39,8 +41,9 @@ public class Player {
 		return health<=0;
 	}
 	
-	public void playerLoseHealth() {
+	public void playerLoseHealth(Player player) {
 		health--;
+		PlayerMessaging.displayHealth(player);
 	}
 	
 	public int getScore() {
