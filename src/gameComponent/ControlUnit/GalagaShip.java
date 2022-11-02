@@ -20,4 +20,5 @@ public class GalagaShip extends ControlUnit {
 		Point2D coordinate = new Point2D(this.getX() + (SHIP_WIDTH/2.0), this.getY());
 		return coordinate;
 	}
+
 }
