@@ -16,7 +16,6 @@ public abstract class NPCGalaga extends GameNPC{
 	}
 	
 	public void move (double wingedYVelocity, double elapsedTime, GalagaShip ship) {
-//		npc.setY(npc.getY() - wingedVelocity.getY() * elapsedTime);
 		double xVal = 0;
 		double yVal = wingedYVelocity;
 		wingedVelocity = new Point2D(xVal, yVal);
@@ -26,9 +25,7 @@ public abstract class NPCGalaga extends GameNPC{
 	
 	protected void failureCheckForLevel(GalagaShip ship) {
 		if (ship.getBulletSpawnLoc().getY() <= npc.getY() + npc.getFitHeight()) {
-//			System.out.println("Oh, NO! You lose! >w<");
 			System.out.println("Oh, NO! You lose! （。>︿<）_θ");
-//			System.out.println("Oh, NO! You lose! ...(｡•ˇ‸ˇ•｡) ...");
 		}
 	}
 	
