@@ -84,7 +84,7 @@ public abstract class MovableObject {
 	}
 	
 	
-	protected void setVelocity(double xVal, double yVal) {
+	public void setVelocity(double xVal, double yVal) {
 		myVelocity = new Point2D(xVal, yVal);
 	}
 	
