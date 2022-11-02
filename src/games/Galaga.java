@@ -120,7 +120,6 @@ public class Galaga extends Application implements Game {
 		for(BulletGalaga bullet : bulletList) {
 			bullet.move(elapsedTime);
 		}
-
 	}
 	
 	private  void handleKeyInputBullet(KeyCode code) {
