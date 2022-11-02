@@ -36,7 +36,7 @@ public class GalagaLevelControl extends GameLevelControl {
 			}
 		} catch (Exception e) {}
 		
-		levelTransition(myStage, player);
+//		levelTransition(myStage, player);
 	}
 	
 	@Override

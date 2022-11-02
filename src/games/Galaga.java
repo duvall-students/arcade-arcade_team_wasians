@@ -112,6 +112,7 @@ public class Galaga extends Application implements Game {
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
+			
 		}
 	}
 
@@ -120,6 +121,7 @@ public class Galaga extends Application implements Game {
 		//myScene.setOnKeyPressed(e -> handleKeyInputBullet(e.getCode()));
 		for(BulletGalaga bullet : bulletList) {
 			bullet.move(elapsedTime);
+			level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum);
 		}
 	}
 	
