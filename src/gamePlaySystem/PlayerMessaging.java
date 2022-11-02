@@ -2,8 +2,11 @@ package gamePlaySystem;
 
 import java.util.logging.Level;
 
+import gamePlaySystem.LevelSystem.BreakoutLevelControl;
+import gamePlaySystem.LevelSystem.GalagaLevelControl;
 import javafx.application.Application; 
-import javafx.scene.Group; 
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
@@ -41,7 +44,13 @@ public class PlayerMessaging {
 	}
 	
 	// display level number
-	public static Text displayLevelNum(Level level) {
+	public static Text displayGalagaLevel(GalagaLevelControl level) {
+		getLevelmessage().setX(350);
+		getLevelmessage().setY(25);
+		return getLevelmessage();
+	}
+	
+	public static Text displayBreakoutLevel(BreakoutLevelControl level) {
 		getLevelmessage().setX(350);
 		getLevelmessage().setY(25);
 		return getLevelmessage();
@@ -54,6 +63,12 @@ public class PlayerMessaging {
 	public static Text getLevelmessage() {
 		return levelMessage;
 	}
+
+
+
+
+	
+	// display score from lose health function, use that
 	
 	// display you win
 //	public void displayWinningMessage() {
