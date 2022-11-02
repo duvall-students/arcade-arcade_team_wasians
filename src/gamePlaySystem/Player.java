@@ -68,9 +68,11 @@ public class Player {
 		try{
 			Scanner reader = new Scanner(maxData);
 			if (reader.hasNextLine()) {
-				return reader.nextInt();
+				int maxScore = reader.nextInt();
+				reader.close();
+				
+				return maxScore;
 			}
-			reader.close();
 		}
 		catch (FileNotFoundException e) {
 		      System.out.println("No Such File Found");
