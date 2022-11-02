@@ -4,6 +4,8 @@ import java.util.logging.Level;
 
 import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.GalagaLevelControl;
+import gamePlaySystem.LevelSystem.GameLevel;
+import gamePlaySystem.LevelSystem.GameLevelControl;
 import javafx.application.Application; 
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -11,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
 import javafx.scene.text.Text; 
+import gamePlaySystem.LevelSystem.GameLevel;
+
 
 
 
@@ -45,12 +49,14 @@ public class PlayerMessaging {
 	
 	// display level number
 	public static Text displayGalagaLevel(GalagaLevelControl level) {
+		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
 		getLevelmessage().setX(350);
 		getLevelmessage().setY(25);
 		return getLevelmessage();
 	}
 	
 	public static Text displayBreakoutLevel(BreakoutLevelControl level) {
+		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
 		getLevelmessage().setX(350);
 		getLevelmessage().setY(25);
 		return getLevelmessage();
