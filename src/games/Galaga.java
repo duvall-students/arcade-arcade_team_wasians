@@ -30,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import gamePlaySystem.PlayerMessaging;
 
 /**
  * @Author: Hunter Copeland
@@ -102,7 +103,9 @@ public class Galaga extends Application implements Game {
 		// create the ship
 		ship = new GalagaShip(size);
 		root.getChildren().add(ship.getShape());
-
+		root.getChildren().add(PlayerMessaging.displayHealth(player));
+		root.getChildren().add(PlayerMessaging.displayGalagaLevel(level));
+		root.getChildren().add(PlayerMessaging.displayScore(player));
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);
 		return scene;

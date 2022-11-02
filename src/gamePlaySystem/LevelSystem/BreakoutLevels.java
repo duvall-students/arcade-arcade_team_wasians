@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
+import gamePlaySystem.PlayerMessaging;
 
 /**
  * @author Xu Yan
@@ -78,6 +79,7 @@ public abstract class BreakoutLevels extends GameLevel {
 					allNPCs.remove(npc);
 					root.getChildren().remove(npc.getNPC());
 					player.addScore(1);
+					PlayerMessaging.displayScore(player);
 				}
 				if (powerUpBricks.contains(npc)) {
 					ball.powerUpBall();
