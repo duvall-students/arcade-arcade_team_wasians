@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.scene.Group;
 
 import gameComponent.MovableObject.BallBreakout;
+import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCGalagaWingedGreen;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
@@ -72,15 +73,15 @@ public class GalagaLevel_3 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	@Override
-	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player) {
 		for (GameNPC npc: allNPCs) {
-			if (ball.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
+			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				allNPCs.remove(npc);
 				if (allNonPowerUpWingeds.contains(npc)) {
 					allNonPowerUpWingeds.remove(npc);
 				}
 				root.getChildren().remove(npc.getNPC());
+				root.getChildren().remove(bullet.getView());
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
 				}
@@ -89,6 +90,7 @@ public class GalagaLevel_3 extends GalagaLevels {
 		}
 	}
 
+	// check the winning condition at this level
 	@Override
 	protected void winCheckForLevel() {
 		
