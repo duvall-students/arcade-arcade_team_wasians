@@ -13,7 +13,7 @@ public class BallBreakout extends MovableObject{
 	
 	public static String BALL_IMAGE = "resources/ball.gif";
 	public static final int BALL_SIZE = 20;
-	public static final int VELOCITY_NUM_RANGE = 5; 
+	public static final int VELOCITY_NUM_RANGE = 30; 
 	public static final double POWER_UP_SPEED_MULTIPLIER = 1.2;
 	public static final int X_START_VELOCITY = 25;
 	public static final int Y_START_VELOCITY = 100;
@@ -73,15 +73,15 @@ public class BallBreakout extends MovableObject{
 	private void reverseX(boolean isPaddle) {
 		//case 1: collides with paddle's left side.
 		if (isPaddle && myVelocity.getX() > 0) {
-			setVelocity(-Math.abs(myVelocity.getX()), addRandomToYVelocity());
+			setVelocity(-Math.abs(myVelocity.getX()), myVelocity.getY());
 		}
 		//case 2: collides with paddle's right side.
 		else if (isPaddle && myVelocity.getX() < 0) {
-			setVelocity(Math.abs(myVelocity.getX()), addRandomToYVelocity());
+			setVelocity(Math.abs(myVelocity.getX()), myVelocity.getY());
 		}
 		//case 3: collides with Bricks.
 		else {
-			setVelocity(-myVelocity.getX() + getRandomInRange(-5,5), addRandomToYVelocity());
+			setVelocity(-myVelocity.getX() + getRandomInRange(-5,5), myVelocity.getY());
 		}
 	}
 
@@ -118,10 +118,6 @@ public class BallBreakout extends MovableObject{
 //		myView.setX(rectangle.getX() - myView.getFitWidth());
 //	}
 //	
-	//introduces some randomness to the Y Velocity. 
-	private double addRandomToYVelocity() {
-		return myVelocity.getY() + getRandomInRange(-VELOCITY_NUM_RANGE, VELOCITY_NUM_RANGE);
-	}
 	
 	//introduces some randomness to the X Velocity. 
 	private double addRandomToXVelocity() {
