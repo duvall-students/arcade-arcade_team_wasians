@@ -69,14 +69,11 @@ public class PlayerMessaging {
 		return getLevelmessage();
 	}
 	
-	public static Text displayEndMessage(Player player, GalagaLevelControl level) throws InterruptedException {
-		endMessage.setX(150);
-		endMessage.setY(150);
-
-		if (GameLevel.areAllLevelsPassed(level.getLevelNum())) {
-			endMessage.setText("You win!");
-			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
-		}
+	public static Text displayEndMessage() {
+		endMessage.setX(200);
+		endMessage.setY(300);
+		endMessage.setText("You win!");
+		endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return scoreMessage;
 	}
 	public static Text displayDeathMessage(Player player){

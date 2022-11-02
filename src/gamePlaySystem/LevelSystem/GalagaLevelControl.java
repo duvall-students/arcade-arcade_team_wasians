@@ -10,6 +10,7 @@ import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gamePlaySystem.Player;
+import gamePlaySystem.PlayerMessaging;
 
 /**
  * @author Xu Yan
@@ -57,8 +58,8 @@ public class GalagaLevelControl extends GameLevelControl {
 	@Override
 	protected void levelTransition(Stage myStage, Player player) {
 		if (gameLevel.areAllLevelsPassed(levelNum)) {
-			gameLevel.winningMessage();
-			System.exit(0);
+			PlayerMessaging.displayEndMessage();
+			//System.exit(0);
 		}
 		levelNum += levelUpNum;
 		player.setReadytoPlay(false);

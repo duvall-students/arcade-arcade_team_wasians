@@ -102,7 +102,6 @@ public class Galaga extends Application implements Game {
 		root.getChildren().add(ship.getShape());
 		
 		// add text
-		root.getChildren().add(PlayerMessaging.displayHealth(player));
 		root.getChildren().add(PlayerMessaging.displayGalagaLevel(level));
 		root.getChildren().add(PlayerMessaging.displayScore(player));
 		root.getChildren().add(PlayerMessaging.displayStartingMessage());
