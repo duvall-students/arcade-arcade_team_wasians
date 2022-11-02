@@ -3,6 +3,7 @@ package gamePlaySystem.LevelSystem;
 import javafx.scene.Group;
 
 import gameComponent.MovableObject.BallBreakout;
+import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedYellow;
@@ -22,11 +23,11 @@ public class GalagaLevel_1 extends GalagaLevels {
 	private static final int LEVEL = 1;
 	// the layout has row: 5, column: 18
 	private int[][] LAYOUT_L1 = {
-			{0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0, 4, 4, 4, 1, 4, 4, 4, 4, 0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0},
-			{0, 0, 0, 0, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0},
+			{0, 0, 0, 0, 4, 4, 4, 1, 4, 4, 4, 4, 0, 0, 0, 0},
+			{0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0},
+			{0, 0, 0, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 0, 0, 0},
 	};
 
 	public GalagaLevel_1() {
@@ -54,13 +55,13 @@ public class GalagaLevel_1 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-    @Override
-	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player) {
 		for (GameNPC npc: allNPCs) {
-			if (ball.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
+			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				yellowWinged.remove(npc);
 				allNPCs.remove(npc);
 				root.getChildren().remove(npc.getNPC());
+				root.getChildren().remove(bullet.getView());
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
 				}
@@ -69,6 +70,7 @@ public class GalagaLevel_1 extends GalagaLevels {
 		}
 	}
 
+    // check the winning condition at this level
 	@Override
 	protected void winCheckForLevel() {
 		
