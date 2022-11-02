@@ -19,9 +19,9 @@ import javafx.util.Duration;
  * @Author: Hunter Copeland
  */
 
-public class Game extends Application {
-	
-	//properties of the canvas
+public interface Game {
+
+	// properties of the canvas
 	public static final Paint BACKGROUND = Color.AZURE;
 	public static final int SIZE = 400;
 
@@ -30,32 +30,22 @@ public class Game extends Application {
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
 	
-	private Scene myScene;
-	private Stage myStage;
-	protected Player player;
-	private Group root;
-	
-	@Override
-	public void start(Stage stage){
 
-		myScene = setupGame(SIZE, BACKGROUND);
-		myStage = new Stage();
-		myStage = stage;
-		myStage.setScene(myScene);
-		myStage.show();
-		myScene.setOnKeyPressed(e -> platform.handleKeyInput(e.getCode(), player));
+	// the image source of each elements for breakout
+	public static final String PLATFORM_IMAGE = "resources/paddle.gif";
+	public static final String WIN_IMAGE = "resources/youwinimage.jpeg";
+	public static String BALL_IMAGE = "resources/ball.gif";
 
-		
-		// attach "game loop" to timeline to play it (basically just calling step() method repeatedly forever)
-		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step(SECOND_DELAY));
-		Timeline animation = new Timeline();
-		animation.setCycleCount(Timeline.INDEFINITE);
-		animation.getKeyFrames().add(frame);
-		animation.play();
-	}
+	public void start(Stage stage);
 
-	public Scene setupGame(int size, Paint background) {
-		return null;
-	}
+	public Scene setupGame(int size, Paint background);
+
+	public void step(double elapsedTime);
+
+	public void moveFrame(double elapsedTime);
+
+//	public void levelTransition();
+
+//	public void setUpLevelToConstructorNoParameterMap();
 
 }

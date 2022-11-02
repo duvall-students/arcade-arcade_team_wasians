@@ -22,7 +22,7 @@ public abstract class ControlUnit {
 	public int canvasSize;
 	public static final int OBJECT_SPEED = 10;
 	
-	public ControlUnit(String Image, int canvasSize, double x_coordinate, double y_coordinate, double width) {
+	public ControlUnit(String Image, int canvasSize, double x_coordinate, double y_coordinate, double width, double height) {
 		try{
 			image = new ImageView(new Image(new FileInputStream(Image)));
 		}
@@ -34,6 +34,7 @@ public abstract class ControlUnit {
 		image.setX(x_coordinate);
 		image.setY(y_coordinate); 
 		image.setFitWidth(width);
+		image.setFitHeight(height);
 	}
 	
 	public void handleKeyInput (KeyCode code, Player player) {

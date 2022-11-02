@@ -20,8 +20,6 @@ public abstract class MovableObject {
 	public static final int BOUNCER_MAX_SPEED = 300;
 	public static final int BOUNCER_MIN_SIZE = 20;
 	public static final int BOUNCER_MAX_SIZE = 20;
-	public static final int BALL_SIZE = 20;
-	protected int screenSize;
 	protected Random dice = new Random();
 	protected ImageView myView;
 	protected Point2D myVelocity;
@@ -29,17 +27,20 @@ public abstract class MovableObject {
 	/**
 	 * Create a ball from a given image with random attributes.
 	 */
-	public MovableObject (String image, int screenWidth, int startY) {
+	public MovableObject (String image, int screenWidth, int startY, int width, int height) {
 		try {
 			myView = new ImageView(new Image(new FileInputStream(image)));
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("Ball Image not found.");
 		}
+		
 		// make sure it stays a circle
-		screenSize = screenWidth;
-		myView.setFitWidth(BALL_SIZE);
-		myView.setFitHeight(BALL_SIZE);
+		myView.setFitWidth(width);
+		myView.setFitHeight(height);
+		
+		myView.setX(screenWidth/2.0);
+		myView.setY(startY);
 	}
 
 	//returns the image of the Ball.
