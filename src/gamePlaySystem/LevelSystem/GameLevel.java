@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.stage.Stage;
 
 import gameComponent.MovableObject.BallBreakout;
+import gameComponent.MovableObject.MovableObject;
 import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
 
@@ -61,15 +62,17 @@ public abstract class GameLevel {
 //    protected abstract void generateNPCs(int col, int row, Group root, String npcType);
     
     // deal with the collision of the MovableObject and NPCObject
-    protected abstract void collideWithNPCs(Group root, BallBreakout ball, Player player);
+//    protected abstract void collideWithNPCs(Group root, BallBreakout ball, Player player);
+//    protected abstract void collideWithNPCs(Group root, MovableObject movableObject, Player player);
 	
 	public int getAllowedHealth() {
 		return allowedHealth;
 	}
 	
+	// check if the player wins in the specific level
 	protected abstract void winCheckForLevel();
 	
-	// displays winning message to the screen when the player passed all levels in each game
+	// displays winning message to the screen when the player passes all levels in each game
     public void winningMessage() {
     	if (isWinnerInLevel && !hasPrinted) {
     		System.out.println("You win!");
@@ -77,10 +80,12 @@ public abstract class GameLevel {
     	}
     }
 	
+    // get if the player wins in the specific level
 	public boolean getIsWinningAtEachLevel() {
 		return isWinnerInLevel;
 	}
 	
+	// check if 
 	public boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}

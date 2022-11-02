@@ -2,11 +2,11 @@ package gamePlaySystem.LevelSystem;
 
 import javafx.scene.Group;
 
-import gameComponent.MovableObject.BallBreakout;
-import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCBreakoutBrickBreakable;
 import gameComponent.NPCObject.NPCBreakoutBrickPowerUp;
 import gameComponent.NPCObject.NPCBreakoutBrickUnbreakable;
+import gameComponent.MovableObject.BallBreakout;
+import gameComponent.NPCObject.GameNPC;
 import gamePlaySystem.Player;
 
 /**
@@ -22,9 +22,9 @@ public class BreakoutLevel_2 extends BreakoutLevels {
 	private static final int BRICKS_Y_OFFSET = 25;
 	private static final int LEVEL = 2;
 	private final int [][] LAYOUT_L2 = {
-			{0, 1, 2, 2, 2, 2, 2, 2, 0},
+			{0, 1, 2, 2, 1, 2, 2, 2, 0},
 			{0, 2, 0, 2, 0, 2, 0, 2, 0},
-			{3, 2, 2, 2, 0, 2, 2, 1, 3},
+			{3, 2, 2, 2, 0, 2, 2, 2, 3},
 			{3, 2, 0, 2, 3, 2, 0, 2, 3},
 			{3, 2, 2, 2, 3, 2, 2, 2, 3},
 			{3, 2, 2, 2, 1, 2, 2, 2, 3},
@@ -59,6 +59,7 @@ public class BreakoutLevel_2 extends BreakoutLevels {
 		root.getChildren().add(npc.getNPC());
 	}
 	
+	// check the winning condition at this level
 	@Override
 	protected void winCheckForLevel() {
 		final int ALL_CLEAR = 0;

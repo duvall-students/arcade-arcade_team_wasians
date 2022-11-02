@@ -23,10 +23,10 @@ public class BreakoutLevelControl extends GameLevelControl {
 		levelUpNum = 1;
 	}
 	
-	@Override
+	// deal with the collision of the movable and immovable elements
 	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player) {
 		try {
-			gameLevel.collideWithNPCs(root, ball, player);
+			((BreakoutLevels) gameLevel).collideWithNPCs(root, ball, player);
 		} catch (Exception e) {}
 		
 		if (gameLevel.getIsWinningAtEachLevel()) {
@@ -34,6 +34,7 @@ public class BreakoutLevelControl extends GameLevelControl {
 		}
 	}
 	
+	// deal with the level transition when the player wins in the level
 	@Override
 	protected void levelTransition(Stage myStage, Player player) {
 		if (gameLevel.areAllLevelsPassed(levelNum)) {
@@ -45,6 +46,7 @@ public class BreakoutLevelControl extends GameLevelControl {
 		myStage.close();
 	}
 	
+	// calling default constructors of BreakoutLevels
 	@Override
 	protected void setUpLevelToConstructorNoParameterMap() {
 		final int LEVEL_1 = 1;
@@ -56,10 +58,12 @@ public class BreakoutLevelControl extends GameLevelControl {
 		levelToConstructorNoParameter.put(LEVEL_3, BreakoutLevel_3::new);
 	}
 	
+	// get the ball starting position
 	public double getBallStartingPosition() {
 		return ((BreakoutLevels) gameLevel).getBallStartingPositionNow();
 	}
 	
+	// check if the player wins at the specific level in Breakout
 	public boolean checkIsWinInEachLevel() {
 //		return gameLevel.isWinnerInLevel;
 		return gameLevel.getIsWinningAtEachLevel();

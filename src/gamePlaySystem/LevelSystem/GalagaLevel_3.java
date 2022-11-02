@@ -1,12 +1,15 @@
 package gamePlaySystem.LevelSystem;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javafx.scene.Group;
-
+import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
+import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
+import gameComponent.NPCObject.NPCGalaga;
 import gameComponent.NPCObject.NPCGalagaWingedGreen;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedRed;
@@ -23,17 +26,17 @@ import gamePlaySystem.Player;
 public class GalagaLevel_3 extends GalagaLevels {
 
 	private static final int BRICKS_Y_OFFSET = 10;
-	private static final int LEVEL = 1;
+	private static final int LEVEL = 3;
 	private List<GameNPC> allNonPowerUpWingeds;
-	// the layout has row: 7, column: 18
+	// the layout has row: 7, column: 18; power-up: 9
 	private int[][] LAYOUT_L3 = {
-			{0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0, 0, 0, 0, 0},
+			{1, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0, 0, 0, 0, 0},
 			{0, 0, 0, 0, 1, 0, 4, 2, 2, 2, 2, 4, 0, 0, 0, 1, 0, 0},
-			{0, 0, 0, 1, 0, 0, 3, 4, 2, 2, 4, 3, 0, 0, 1, 0, 0, 0},
-			{0, 0, 0, 0, 3, 4, 3, 3, 3, 3, 3, 3, 4, 3, 0, 0, 0, 0},
-			{0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0},
+			{1, 0, 0, 0, 0, 0, 3, 4, 2, 2, 4, 3, 0, 0, 0, 0, 0, 0},
+			{0, 0, 1, 0, 3, 4, 3, 3, 3, 3, 3, 3, 4, 3, 0, 0, 0, 0},
+			{0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 1, 0},
 			{0, 1, 0, 4, 3, 4, 4, 4, 2, 2, 4, 4, 4, 3, 4, 0, 0, 0},
-			{0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0},
+			{0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 1},
 	};
 
 	public GalagaLevel_3() {
@@ -72,26 +75,42 @@ public class GalagaLevel_3 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	@Override
-	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList) {
 		for (GameNPC npc: allNPCs) {
-			if (ball.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
+			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				allNPCs.remove(npc);
 				if (allNonPowerUpWingeds.contains(npc)) {
 					allNonPowerUpWingeds.remove(npc);
 				}
+				bulletList.remove(bullet);
 				root.getChildren().remove(npc.getNPC());
+				root.getChildren().remove(bullet.getView());
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
+					player.addScore(15);
 				}
 			}
 			winCheckForLevel();
 		}
 	}
-
+	
 	@Override
+	protected void moveWinged(double elapsedTime, GalagaShip ship) {
+		double wingedYVelocity = 3;
+		for (GameNPC npc: allNPCs) {
+			((NPCGalaga) npc).move(wingedYVelocity, elapsedTime, ship);
+		}
+	}
+	
+    // check the winning condition at this level
+    @Override
 	protected void winCheckForLevel() {
-		
+		final int ALL_CLEAR = 0;
+		boolean isLevelAccomplished = allNonPowerUpWingeds.size() == ALL_CLEAR;
+		if (isLevelAccomplished) {
+			isWinnerInLevel = true;
+			winningMessage();
+		}
 	}
 	
 }
