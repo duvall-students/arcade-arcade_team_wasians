@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.stage.Stage;
 
 import gameComponent.MovableObject.BallBreakout;
+import gameComponent.MovableObject.BulletGalaga;
 import gamePlaySystem.Player;
 
 /**
@@ -23,10 +24,16 @@ public class GalagaLevelControl extends GameLevelControl {
 		levelUpNum = 1;
 	}
 	
-	@Override
-	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player) {
+	//
+	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum) {
 		try {
-			gameLevel.collideWithNPCs(root, ball, player);
+			if (levelNum == 1) {
+				((GalagaLevel_1) gameLevel).collideWithNPCs(root, bullet, player);
+			} else if (levelNum == 2) {
+				((GalagaLevel_2) gameLevel).collideWithNPCs(root, bullet, player);
+			} else if (levelNum == 3) {
+				((GalagaLevel_3) gameLevel).collideWithNPCs(root, bullet, player);
+			}
 		} catch (Exception e) {}
 		
 		levelTransition(myStage, player);
@@ -43,6 +50,7 @@ public class GalagaLevelControl extends GameLevelControl {
 		myStage.close();
 	}
 
+	// calling default constructors of GalagaLevels
 	@Override
 	protected void setUpLevelToConstructorNoParameterMap() {
 		final int LEVEL_1 = 1;
