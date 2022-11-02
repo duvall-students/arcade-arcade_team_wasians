@@ -62,8 +62,10 @@ public class GalagaLevel_1 extends GalagaLevels {
 				allNPCs.remove(npc);
 				root.getChildren().remove(npc.getNPC());
 				root.getChildren().remove(bullet.getView());
+//				root.getChildren().remove(bullet);
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
+					
 				}
 			}
 			winCheckForLevel();
