@@ -24,6 +24,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -88,6 +89,8 @@ public class Breakout extends Application implements Game{
 		root.getChildren().add(PlayerMessaging.displayHealth(player));
 		root.getChildren().add(PlayerMessaging.displayBreakoutLevel(level));
 		root.getChildren().add(PlayerMessaging.displayScore(player));
+		root.getChildren().add(PlayerMessaging.displayDeathMessage(player));
+
 
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);

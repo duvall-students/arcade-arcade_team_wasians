@@ -1,12 +1,14 @@
 package gamePlaySystem;
 
+import java.awt.Color;
 import java.util.logging.Level;
 
 import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.GalagaLevelControl;
 import gamePlaySystem.LevelSystem.GameLevel;
 import gamePlaySystem.LevelSystem.GameLevelControl;
-import javafx.application.Application; 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -33,33 +35,69 @@ public class PlayerMessaging {
 
 	// display current score
 	public static Text displayScore(Player player) {
-		scoreMessage.setX(50);
-		scoreMessage.setY(25);
+		scoreMessage.setX(40);
+		scoreMessage.setY(20);
 		scoreMessage.setText("Score: " + player.getScore());
+		scoreMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return scoreMessage;
 	}
 
 	// display health
 	public static Text displayHealth(Player player) {
-		healthMessage.setX(200);
-		healthMessage.setY(25);
+		healthMessage.setX(190);
+		healthMessage.setY(20);		
 		healthMessage.setText("Health: " + player.getHealth());
+		healthMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return healthMessage;
 	}
 	
 	// display level number
 	public static Text displayGalagaLevel(GalagaLevelControl level) {
 		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
-		getLevelmessage().setX(350);
-		getLevelmessage().setY(25);
+		getLevelmessage().setX(340);
+		getLevelmessage().setY(20);
+		levelMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return getLevelmessage();
 	}
 	
 	public static Text displayBreakoutLevel(BreakoutLevelControl level) {
 		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
 		getLevelmessage().setX(350);
-		getLevelmessage().setY(25);
+		getLevelmessage().setY(20);
+		levelMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return getLevelmessage();
+	}
+	
+	public static Text displayEndMessage(Player player, GalagaLevelControl level) throws InterruptedException {
+		endMessage.setX(150);
+		endMessage.setY(150);
+		
+		if (player.getHealth() == 0) {
+			endMessage.setText("You lose! :(");
+			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+			Thread.sleep(500);
+			Platform.exit();
+		}
+		if (GameLevel.areAllLevelsPassed(level.getLevelNum())) {
+			endMessage.setText("You win!");
+			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+			Thread.sleep(500);
+			Platform.exit();
+		}
+		return scoreMessage;
+	}
+	public static Text displayDeathMessage(Player player){
+		endMessage.setX(250);
+		endMessage.setY(250);
+		
+		if (player.getHealth() == 0) {
+			endMessage.setText("You lose! :(");
+			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+			//Platform.wait(500);
+			Platform.exit();
+		}
+		return endMessage;
+		
 	}
 
 	public static Text getScoremessage() {
