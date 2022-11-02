@@ -119,7 +119,6 @@ public class Galaga extends Application implements Game {
 		//myScene.setOnKeyPressed(e -> handleKeyInputBullet(e.getCode()));
 		for(BulletGalaga bullet : bulletList) {
 			bullet.move(elapsedTime);
-			
 		}
 
 	}
