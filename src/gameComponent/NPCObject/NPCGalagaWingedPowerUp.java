@@ -17,7 +17,7 @@ public class NPCGalagaWingedPowerUp extends NPCGalaga {
 		wingedVelocity = new Point2D(0, -20);
 	}
 	
-//	protected void move (double elapsedTime) {
+//	public void move (double elapsedTime) {
 //		npc.setY(npc.getY() + wingedVelocity.getY() * elapsedTime);
 //	}
 	

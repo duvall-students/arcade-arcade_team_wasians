@@ -4,9 +4,11 @@ import javafx.scene.Group;
 
 import java.util.Collection;
 
+import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
+import gameComponent.NPCObject.NPCGalaga;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedYellow;
 import gamePlaySystem.Player;
@@ -67,8 +69,10 @@ public class GalagaLevel_1 extends GalagaLevels {
 				allNPCs.remove(npc);
 				root.getChildren().remove(npc.getNPC());
 				root.getChildren().remove(bullet.getView());
+//				root.getChildren().remove(bullet);
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
+					
 				}
 				bullet.setVelocity(0, 0);
 				
@@ -76,11 +80,22 @@ public class GalagaLevel_1 extends GalagaLevels {
 			winCheckForLevel();
 		}
 	}
+	
+//	protected void moveWinged(double elapsedTime, GalagaShip ship) {
+//		for (GameNPC npc: allNPCs) {
+//			((NPCGalaga) npc).move(elapsedTime, ship);
+//		}
+//	}
 
     // check the winning condition at this level
-	@Override
+    @Override
 	protected void winCheckForLevel() {
-		
+		final int ALL_CLEAR = 0;
+		boolean isLevelAccomplished = yellowWinged.size() == ALL_CLEAR;
+		if (isLevelAccomplished) {
+			isWinnerInLevel = true;
+			winningMessage();
+		}
 	}
-	
+    
 }

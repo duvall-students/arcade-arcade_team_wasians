@@ -1,13 +1,15 @@
 package gamePlaySystem.LevelSystem;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javafx.scene.Group;
-
+import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
+import gameComponent.NPCObject.NPCGalaga;
 import gameComponent.NPCObject.NPCGalagaWingedGreen;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedRed;
@@ -73,7 +75,7 @@ public class GalagaLevel_3 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList, GalagaShip ship) {
 		for (GameNPC npc: allNPCs) {
 			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				allNPCs.remove(npc);
@@ -89,11 +91,16 @@ public class GalagaLevel_3 extends GalagaLevels {
 			winCheckForLevel();
 		}
 	}
-
-	// check the winning condition at this level
-	@Override
+	
+    // check the winning condition at this level
+    @Override
 	protected void winCheckForLevel() {
-		
+		final int ALL_CLEAR = 0;
+		boolean isLevelAccomplished = allNonPowerUpWingeds.size() == ALL_CLEAR;
+		if (isLevelAccomplished) {
+			isWinnerInLevel = true;
+			winningMessage();
+		}
 	}
 	
 }

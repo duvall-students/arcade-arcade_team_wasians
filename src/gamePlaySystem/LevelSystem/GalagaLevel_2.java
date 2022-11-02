@@ -2,9 +2,13 @@ package gamePlaySystem.LevelSystem;
 
 import javafx.scene.Group;
 
+import java.util.Collection;
+
+import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
+import gameComponent.NPCObject.NPCGalaga;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedRed;
 import gamePlaySystem.Player;
@@ -21,14 +25,6 @@ public class GalagaLevel_2 extends GalagaLevels {
 	private static final int BRICKS_Y_OFFSET = 20;
 	private static final int LEVEL = 1;
 	// the layout has row: 6, column: 18
-//	private int[][] LAYOUT_L2 = {
-//			{0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0, 0},
-//			{0, 0, 0, 0, 1, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0},
-//			{0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 1, 0, 0, 0},
-//			{0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0},
-//			{0, 0, 1, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0},
-//			{0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0},
-//	};
 	private int[][] LAYOUT_L2 = {
 			{0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0},
 			{0, 0, 0, 1, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0},
@@ -64,7 +60,7 @@ public class GalagaLevel_2 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList, GalagaShip ship) {
 		for (GameNPC npc: allNPCs) {
 			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				redWinged.remove(npc);
@@ -78,11 +74,16 @@ public class GalagaLevel_2 extends GalagaLevels {
 			winCheckForLevel();
 		}
 	}
-
-	// check the winning condition at this level
-	@Override
+	
+    // check the winning condition at this level
+    @Override
 	protected void winCheckForLevel() {
-		
+		final int ALL_CLEAR = 0;
+		boolean isLevelAccomplished = redWinged.size() == ALL_CLEAR;
+		if (isLevelAccomplished) {
+			isWinnerInLevel = true;
+			winningMessage();
+		}
 	}
 	
 }

@@ -1,5 +1,6 @@
 package gameComponent.NPCObject;
 
+import gameComponent.ControlUnit.GalagaShip;
 import javafx.geometry.Point2D;
 
 public abstract class NPCGalaga extends GameNPC{
@@ -14,8 +15,19 @@ public abstract class NPCGalaga extends GameNPC{
 		NPC_IMAGE_HEIGHT = GENERAL_NPC_HEIGHT;
 	}
 	
-	protected void move (double elapsedTime) {
+	public void move (double elapsedTime, GalagaShip ship) {
+//		npc.setY(npc.getY() - wingedVelocity.getY() * elapsedTime);
+		double xVal = 0;
+		double yVal = 7;
+		wingedVelocity = new Point2D(xVal, yVal);
+		failureCheckForLevel(ship);
 		npc.setY(npc.getY() + wingedVelocity.getY() * elapsedTime);
 	}
-
+	
+	protected void failureCheckForLevel(GalagaShip ship) {
+		if (ship.getBulletSpawnLoc().getY() <= npc.getY()+npc.getFitHeight()) {
+			System.out.println("You loose!");
+		}
+	}
+	
 }
