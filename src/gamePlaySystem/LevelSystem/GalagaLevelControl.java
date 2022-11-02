@@ -20,6 +20,9 @@ import gamePlaySystem.Player;
 
 public class GalagaLevelControl extends GameLevelControl {
 	
+	final int LEVEL_1 = 1;
+	final int LEVEL_2 = 2;
+	final int LEVEL_3 = 3;
 	private boolean collided;
 
 	public GalagaLevelControl(Group root, int levelNum) {
@@ -30,13 +33,13 @@ public class GalagaLevelControl extends GameLevelControl {
 	//
 	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum, Collection<BulletGalaga> bulletList, GalagaShip ship) {
 		try {
-			if (levelNum == 1) {
+			if (levelNum == LEVEL_1) {
 				((GalagaLevel_1) gameLevel).collideWithNPCs(root, bullet, player, bulletList);
 				collided = true;
-			} else if (levelNum == 2) {
-				((GalagaLevel_2) gameLevel).collideWithNPCs(root, bullet, player, bulletList, ship);
-			} else if (levelNum == 3) {
-				((GalagaLevel_3) gameLevel).collideWithNPCs(root, bullet, player, bulletList, ship);
+			} else if (levelNum == LEVEL_2) {
+				((GalagaLevel_2) gameLevel).collideWithNPCs(root, bullet, player, bulletList);
+			} else if (levelNum == LEVEL_3) {
+				((GalagaLevel_3) gameLevel).collideWithNPCs(root, bullet, player, bulletList);
 			}
 		} catch (Exception e) {}
 		
@@ -63,22 +66,20 @@ public class GalagaLevelControl extends GameLevelControl {
 	}
 	
 	public void getWingedMove(double elapsedTime, GalagaShip ship) {
-		if (levelNum == 1) {
-			((GalagaLevel_1) gameLevel).moveWinged(elapsedTime, ship);
+		double wingedYVelocityOption = elapsedTime;
+		if (levelNum == LEVEL_1) {
+			((GalagaLevel_1) gameLevel).moveWinged(wingedYVelocityOption, ship);
 			collided = true;
-		} else if (levelNum == 2) {
-			((GalagaLevel_2) gameLevel).moveWinged(elapsedTime, ship);
-		} else if (levelNum == 3) {
-			((GalagaLevel_3) gameLevel).moveWinged(elapsedTime, ship);
+		} else if (levelNum == LEVEL_2) {
+			((GalagaLevel_2) gameLevel).moveWinged(wingedYVelocityOption, ship);
+		} else if (levelNum == LEVEL_3) {
+			((GalagaLevel_3) gameLevel).moveWinged(wingedYVelocityOption, ship);
 		}
 	}
 
 	// calling default constructors of GalagaLevels
 	@Override
 	protected void setUpLevelToConstructorNoParameterMap() {
-		final int LEVEL_1 = 1;
-		final int LEVEL_2 = 2;
-		final int LEVEL_3 = 3;
 		levelToConstructorNoParameter = new HashMap<Integer, Supplier<GameLevel>>();
 		levelToConstructorNoParameter.put(LEVEL_1, GalagaLevel_1::new);
 		levelToConstructorNoParameter.put(LEVEL_2, GalagaLevel_2::new);

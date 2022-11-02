@@ -23,7 +23,6 @@ public interface Game {
 
 	// properties of the canvas
 //	public static final Paint BACKGROUND = Color.AZURE;
-	public static final Paint BACKGROUND = Color.BLACK;
 	public static final int SIZE = 400;
 
 	// properties of the keyboard key movement
@@ -44,9 +43,5 @@ public interface Game {
 	public void step(double elapsedTime);
 
 	public void moveFrame(double elapsedTime);
-
-//	public void levelTransition();
-
-//	public void setUpLevelToConstructorNoParameterMap();
 
 }

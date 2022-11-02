@@ -24,12 +24,12 @@ public class GalagaLevel_2 extends GalagaLevels {
 
 	private static final int BRICKS_Y_OFFSET = 20;
 	private static final int LEVEL = 1;
-	// the layout has row: 6, column: 18
+	// the layout has row: 6, column: 16; power-up: 6
 	private int[][] LAYOUT_L2 = {
-			{0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 1, 0, 0, 0, 0},
-			{0, 0, 0, 1, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 1, 0, 0},
-			{0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0},
+			{1, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0, 0, 1},
+			{0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0},
+			{0, 0, 1, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 0, 1, 0, 0},
 			{0, 1, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0},
 			{0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0},
 	};
@@ -60,18 +60,28 @@ public class GalagaLevel_2 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList, GalagaShip ship) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList) {
 		for (GameNPC npc: allNPCs) {
 			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				redWinged.remove(npc);
 				allNPCs.remove(npc);
+				bulletList.remove(bullet);
 				root.getChildren().remove(npc.getNPC());
 				root.getChildren().remove(bullet.getView());
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
+					player.addScore(10);
 				}
 			}
 			winCheckForLevel();
+		}
+	}
+	
+	@Override
+	protected void moveWinged(double elapsedTime, GalagaShip ship) {
+		double wingedYVelocity = 5;
+		for (GameNPC npc: allNPCs) {
+			((NPCGalaga) npc).move(wingedYVelocity, elapsedTime, ship);
 		}
 	}
 	
