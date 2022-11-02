@@ -7,6 +7,10 @@ package gameComponent.MovableObject;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Random;
+
+import gameComponent.ControlUnit.BreakOutPaddle;
+import gamePlaySystem.Player;
+import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -83,7 +87,14 @@ public abstract class MovableObject {
 	protected void setVelocity(double xVal, double yVal) {
 		myVelocity = new Point2D(xVal, yVal);
 	}
+	
+	public void handleBallMovement(double elapsedTime) {
+		move(elapsedTime);
+	}
 
+	public boolean isBallOut(int sceneSize) {
+		return myView.getY() >  sceneSize - myView.getBoundsInLocal().getHeight();
+	}
 }
 
 

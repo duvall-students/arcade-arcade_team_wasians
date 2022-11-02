@@ -10,7 +10,7 @@ public class BulletGalaga extends MovableObject{
 
 	public BulletGalaga(int screenSize, int startY, GalagaShip ship) {
 		super(BULLET_IMAGE, screenSize, startY, BULLET_WIDTH, BULLET_HEIGHT);
-		myVelocity = new Point2D(0,100);
+		myVelocity = new Point2D(0,-100);
 		myView.setX(ship.getBulletSpawnLoc().getX());
 		myView.setY(ship.getBulletSpawnLoc().getY());
 	}
