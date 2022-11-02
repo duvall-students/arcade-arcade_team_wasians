@@ -43,7 +43,7 @@ public class PlayerMessaging {
 		return scoreMessage;
 	}
 
-	// display health
+	// displays player's health
 	public static Text displayHealth(Player player) {
 		healthMessage.setX(190);
 		healthMessage.setY(20);		
@@ -52,7 +52,7 @@ public class PlayerMessaging {
 		return healthMessage;
 	}
 	
-	// display level number
+	// display galaga level number
 	public static Text displayGalagaLevel(GalagaLevelControl level) {
 		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
 		getLevelmessage().setX(340);
@@ -61,6 +61,7 @@ public class PlayerMessaging {
 		return getLevelmessage();
 	}
 	
+	// displays the breakout level
 	public static Text displayBreakoutLevel(BreakoutLevelControl level) {
 		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
 		getLevelmessage().setX(350);
@@ -69,6 +70,7 @@ public class PlayerMessaging {
 		return getLevelmessage();
 	}
 	
+	// displays winning message
 	public static Text displayEndMessage() {
 		endMessage.setX(200);
 		endMessage.setY(300);
@@ -76,6 +78,8 @@ public class PlayerMessaging {
 		endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return scoreMessage;
 	}
+	
+	// detects, displays, death and leads to end game
 	public static Text displayDeathMessage(Player player){
 		endMessage.setX(200);
 		endMessage.setY(300);
@@ -88,6 +92,7 @@ public class PlayerMessaging {
 		
 	}
 	
+	//tells player how to start game
 	public static Text displayStartingMessage() {
 		startingMessage.setX(150);
 		startingMessage.setY(250);
@@ -95,6 +100,7 @@ public class PlayerMessaging {
 		return startingMessage;
 	}
 
+	
 	public static Text getScoremessage() {
 		return scoreMessage;
 	}
