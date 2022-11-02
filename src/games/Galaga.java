@@ -11,6 +11,7 @@ import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.NPCGalaga;
 import gamePlaySystem.Player;
+import gamePlaySystem.PlayerMessaging;
 import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.BreakoutLevel_1;
 import gamePlaySystem.LevelSystem.BreakoutLevel_2;
@@ -99,7 +100,12 @@ public class Galaga extends Application implements Game {
 		// create the ship
 		ship = new GalagaShip(size);
 		root.getChildren().add(ship.getShape());
-
+		
+		// add text
+		root.getChildren().add(PlayerMessaging.displayHealth(player));
+		root.getChildren().add(PlayerMessaging.displayGalagaLevel(level));
+		root.getChildren().add(PlayerMessaging.displayScore(player));
+		
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);
 		return scene;

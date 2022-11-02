@@ -39,7 +39,7 @@ public abstract class GameLevel {
     private int currentLevelScore;
     private int totalScore;
     // properties of the level
-    protected int TOTAL_LEVELS;
+    protected static int TOTAL_LEVELS;
     // variables associated with the player
     protected int allowedHealth;
     // variables that declare victory
@@ -86,7 +86,7 @@ public abstract class GameLevel {
 	}
 	
 	// check if 
-	public boolean areAllLevelsPassed(int currentLevel) {
+	public static boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}
 
