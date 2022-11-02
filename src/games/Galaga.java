@@ -105,6 +105,7 @@ public class Galaga extends Application implements Game {
 		root.getChildren().add(PlayerMessaging.displayHealth(player));
 		root.getChildren().add(PlayerMessaging.displayGalagaLevel(level));
 		root.getChildren().add(PlayerMessaging.displayScore(player));
+		root.getChildren().add(PlayerMessaging.displayStartingMessage());
 		
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);
@@ -114,9 +115,13 @@ public class Galaga extends Application implements Game {
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
+			PlayerMessaging.displayStartingMessage().setText("");
+		}
+		else if (player.getHealth() == 0) {
+			PlayerMessaging.displayStartingMessage().setText("");
 		}
 		else {
-			
+			PlayerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
 		}
 	}
 

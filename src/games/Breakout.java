@@ -103,6 +103,9 @@ public class Breakout extends Application implements Game{
 			moveFrame(elapsedTime);
 			PlayerMessaging.displayStartingMessage().setText("");
 		}
+		else if (player.getHealth() == 0) {
+			PlayerMessaging.displayStartingMessage().setText("");
+		}
 		else {
 			PlayerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
 		}
