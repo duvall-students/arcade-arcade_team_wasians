@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import javafx.scene.Group;
-
+import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.NPCObject.GameNPC;
+import gameComponent.NPCObject.NPCGalaga;
 import gamePlaySystem.Player;
 
 /**
@@ -59,6 +60,12 @@ public abstract class GalagaLevels extends GameLevel {
 	
 	// load the winged on the screen
 	protected abstract void generateWingeds(int col, int row, Group root, String wingedType);
+	
+	protected void moveWinged(double elapsedTime, GalagaShip ship) {
+		for (GameNPC npc: allNPCs) {
+			((NPCGalaga) npc).move(elapsedTime, ship);
+		}
+	}
 	
 	private void initializeWingedsListOfEachWingedType() {
 		redWinged = new ArrayList<>();

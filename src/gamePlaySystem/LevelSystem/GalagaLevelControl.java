@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 import javafx.scene.Group;
 import javafx.stage.Stage;
-
+import gameComponent.ControlUnit.GalagaShip;
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gamePlaySystem.Player;
@@ -28,17 +28,21 @@ public class GalagaLevelControl extends GameLevelControl {
 	}
 	
 	//
-	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum, Collection<BulletGalaga> bulletList) {
+	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum, Collection<BulletGalaga> bulletList, GalagaShip ship) {
 		try {
 			if (levelNum == 1) {
 				((GalagaLevel_1) gameLevel).collideWithNPCs(root, bullet, player, bulletList);
 				collided = true;
 			} else if (levelNum == 2) {
-				((GalagaLevel_2) gameLevel).collideWithNPCs(root, bullet, player);
+				((GalagaLevel_2) gameLevel).collideWithNPCs(root, bullet, player, bulletList, ship);
 			} else if (levelNum == 3) {
-				((GalagaLevel_3) gameLevel).collideWithNPCs(root, bullet, player);
+				((GalagaLevel_3) gameLevel).collideWithNPCs(root, bullet, player, bulletList, ship);
 			}
 		} catch (Exception e) {}
+		
+		if (gameLevel.getIsWinningAtEachLevel()) {
+			levelTransition(myStage, player);
+		}
 		
 //		levelTransition(myStage, player);
 	}
@@ -57,6 +61,17 @@ public class GalagaLevelControl extends GameLevelControl {
 		player.setReadytoPlay(false);
 		myStage.close();
 	}
+	
+	public void getWingedMove(double elapsedTime, GalagaShip ship) {
+		if (levelNum == 1) {
+			((GalagaLevel_1) gameLevel).moveWinged(elapsedTime, ship);
+			collided = true;
+		} else if (levelNum == 2) {
+			((GalagaLevel_2) gameLevel).moveWinged(elapsedTime, ship);
+		} else if (levelNum == 3) {
+			((GalagaLevel_3) gameLevel).moveWinged(elapsedTime, ship);
+		}
+	}
 
 	// calling default constructors of GalagaLevels
 	@Override
@@ -69,5 +84,11 @@ public class GalagaLevelControl extends GameLevelControl {
 		levelToConstructorNoParameter.put(LEVEL_2, GalagaLevel_2::new);
 		levelToConstructorNoParameter.put(LEVEL_3, GalagaLevel_3::new);
 	}
-
+	
+	// check if the player wins in the specific level of Breakout
+	public boolean checkIsWinInEachLevel() {
+//		return gameLevel.isWinnerInLevel;
+		return gameLevel.getIsWinningAtEachLevel();
+	}
+	
 }

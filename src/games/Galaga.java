@@ -118,10 +118,18 @@ public class Galaga extends Application implements Game {
 
 	public void moveFrame(double elapsedTime) {		
 		
+		level.getWingedMove(elapsedTime, ship);
+		
 		//myScene.setOnKeyPressed(e -> handleKeyInputBullet(e.getCode()));
 		for(BulletGalaga bullet : bulletList) {
 			bullet.move(elapsedTime);
-			level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList);
+			level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList, ship);
+		}
+		
+		if (level.checkIsWinInEachLevel()) {
+//			System.out.println("Got the level!");
+			levelNum += levelUpNum;
+			start(new Stage());
 		}
 	}
 	
