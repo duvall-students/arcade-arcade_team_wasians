@@ -51,7 +51,7 @@ public class Galaga extends Application implements Game {
 	private BulletGalaga bullet;
 	private GalagaShip ship;
 	private NPCGalaga npc;
-	private Collection<BulletGalaga> bulletList;
+	public Collection<BulletGalaga> bulletList;
 
 	// private List<Brick> bricks;
 
@@ -94,8 +94,8 @@ public class Galaga extends Application implements Game {
 
 		// create the winged layout in specific level
 //		level.createNPCs(root);
-//		level = new GalagaLevelControl(root, levelNum);
-		level = new GalagaLevelControl(root, 3);
+		level = new GalagaLevelControl(root, levelNum);
+//		level = new GalagaLevelControl(root, 1);
 
 		// create player with the particular lives in each level
 		player = new Player(level.getPlayerAllowedHealth());
@@ -121,7 +121,7 @@ public class Galaga extends Application implements Game {
 		//myScene.setOnKeyPressed(e -> handleKeyInputBullet(e.getCode()));
 		for(BulletGalaga bullet : bulletList) {
 			bullet.move(elapsedTime);
-			level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum);
+			level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList);
 		}
 	}
 	

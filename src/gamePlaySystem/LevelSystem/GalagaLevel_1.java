@@ -2,12 +2,15 @@ package gamePlaySystem.LevelSystem;
 
 import javafx.scene.Group;
 
+import java.util.Collection;
+
 import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedYellow;
 import gamePlaySystem.Player;
+import games.Galaga;
 
 /**
  * @author Xu Yan
@@ -29,6 +32,8 @@ public class GalagaLevel_1 extends GalagaLevels {
 			{0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0},
 			{0, 0, 0, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 0, 0, 0},
 	};
+	
+	private boolean collided;
 
 	public GalagaLevel_1() {
 		super(BRICKS_Y_OFFSET, LEVEL);
@@ -55,7 +60,7 @@ public class GalagaLevel_1 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList) {
 		for (GameNPC npc: allNPCs) {
 			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				yellowWinged.remove(npc);
@@ -65,6 +70,8 @@ public class GalagaLevel_1 extends GalagaLevels {
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
 				}
+				bullet.setVelocity(0, 0);
+				
 			}
 			winCheckForLevel();
 		}
