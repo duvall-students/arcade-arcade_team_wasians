@@ -52,6 +52,7 @@ public class BreakoutLevel_1 extends BreakoutLevels {
 		root.getChildren().add(npc.getNPC());
 	}
     
+    // check the winning condition at this level
     @Override
 	protected void winCheckForLevel() {
 		final int ALL_CLEAR = 0;
