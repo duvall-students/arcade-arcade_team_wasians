@@ -1,5 +1,6 @@
 package gamePlaySystem.LevelSystem;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
@@ -18,6 +19,8 @@ import gamePlaySystem.Player;
  */
 
 public class GalagaLevelControl extends GameLevelControl {
+	
+	private boolean collided;
 
 	public GalagaLevelControl(Group root, int levelNum) {
 		super(root, levelNum);
@@ -25,10 +28,11 @@ public class GalagaLevelControl extends GameLevelControl {
 	}
 	
 	//
-	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum) {
+	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum, Collection<BulletGalaga> bulletList) {
 		try {
 			if (levelNum == 1) {
-				((GalagaLevel_1) gameLevel).collideWithNPCs(root, bullet, player);
+				((GalagaLevel_1) gameLevel).collideWithNPCs(root, bullet, player, bulletList);
+				collided = true;
 			} else if (levelNum == 2) {
 				((GalagaLevel_2) gameLevel).collideWithNPCs(root, bullet, player);
 			} else if (levelNum == 3) {
@@ -36,7 +40,11 @@ public class GalagaLevelControl extends GameLevelControl {
 			}
 		} catch (Exception e) {}
 		
-		levelTransition(myStage, player);
+//		levelTransition(myStage, player);
+	}
+	
+	public boolean getCollisionBool() {
+		return collided;
 	}
 	
 	@Override
