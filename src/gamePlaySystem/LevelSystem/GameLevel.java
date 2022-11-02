@@ -85,7 +85,7 @@ public abstract class GameLevel {
 		return isWinnerInLevel;
 	}
 	
-	// check if the 
+	// check if 
 	public boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}

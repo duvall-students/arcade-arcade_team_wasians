@@ -63,7 +63,7 @@ public class BreakoutLevelControl extends GameLevelControl {
 		return ((BreakoutLevels) gameLevel).getBallStartingPositionNow();
 	}
 	
-	// check if the player wins in the specific level of Breakout
+	// check if the player wins at the specific level in Breakout
 	public boolean checkIsWinInEachLevel() {
 //		return gameLevel.isWinnerInLevel;
 		return gameLevel.getIsWinningAtEachLevel();

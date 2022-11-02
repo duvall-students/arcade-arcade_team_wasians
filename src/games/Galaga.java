@@ -36,10 +36,10 @@ import javafx.util.Duration;
  */
 
 public class Galaga extends Application implements Game {
-
+	
+	public static final Paint BACKGROUND = Color.BLACK;
+	
 	// properties and variables associated with the Level
-//	private final int TOTAL_LEVELS = 3;
-//	private HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
 	private int levelNum = 1;
 	private int levelUpNum = 1;
 
@@ -52,8 +52,6 @@ public class Galaga extends Application implements Game {
 	private GalagaShip ship;
 	private NPCGalaga npc;
 	public Collection<BulletGalaga> bulletList;
-
-	// private List<Brick> bricks;
 
 	@Override
 	public void start(Stage stage) {
@@ -93,11 +91,9 @@ public class Galaga extends Application implements Game {
 		root = new Group();
 
 		// create the winged layout in specific level
-//		level.createNPCs(root);
 		level = new GalagaLevelControl(root, levelNum);
-//		level = new GalagaLevelControl(root, 1);
 
-		// create player with the particular lives in each level
+		// set up the player with particular lives
 		player = new Player(level.getPlayerAllowedHealth());
 
 		// create the ship
@@ -121,13 +117,14 @@ public class Galaga extends Application implements Game {
 		level.getWingedMove(elapsedTime, ship);
 		
 		//myScene.setOnKeyPressed(e -> handleKeyInputBullet(e.getCode()));
-		for(BulletGalaga bullet : bulletList) {
-			bullet.move(elapsedTime);
-			level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList, ship);
-		}
+		try {
+			for(BulletGalaga bullet : bulletList) {
+				bullet.move(elapsedTime);
+				level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList, ship);
+			}
+		} catch(Exception e) {}
 		
 		if (level.checkIsWinInEachLevel()) {
-//			System.out.println("Got the level!");
 			levelNum += levelUpNum;
 			start(new Stage());
 		}

@@ -102,7 +102,7 @@ public abstract class BreakoutLevels extends GameLevel {
 		unbreakableBricks = new ArrayList<>();
 	}
 	
-	// associate the level with its particular power-up in Breakout Game
+	// associate the level with its particular power-up type in Breakout Game
 	private void setPowerUpBrickSettingsInLevels() {
 		final int LEVEL_1 = 1;
 		final int LEVEL_2 = 2;
