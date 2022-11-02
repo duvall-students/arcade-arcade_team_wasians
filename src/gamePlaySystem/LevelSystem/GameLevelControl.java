@@ -21,6 +21,14 @@ public abstract class GameLevelControl {
 	// properties and variables associated with the Level
 	private final int TOTAL_LEVELS = 3;
 	protected int levelNum;
+	public int getLevelNum() {
+		return levelNum;
+	}
+
+	public void setLevelNum(int levelNum) {
+		this.levelNum = levelNum;
+	}
+
 	protected int levelUpNum;
 	protected HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
 	protected GameLevel gameLevel;

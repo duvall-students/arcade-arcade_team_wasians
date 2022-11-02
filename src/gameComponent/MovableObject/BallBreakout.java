@@ -145,7 +145,7 @@ public class BallBreakout extends MovableObject{
 		if (isBallOut(SIZE)) {
 			resetBall(SIZE, (int)(SIZE * level.getBallStartingPosition()));
 			player.setReadytoPlay(false);
-			player.playerLoseHealth();
+			player.playerLoseHealth(player);
 		}
 	}
 	

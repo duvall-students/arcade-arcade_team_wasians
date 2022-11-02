@@ -33,7 +33,7 @@ public abstract class GameLevel {
 	protected final String POWER_UP = "power-up";
 	protected final int FIRST_ROW = 0;
 	protected int npcsOffsetFromTop;
-	private int currentLevel;
+	private static int currentLevel;
 	// properties of the level points
     private final int INITIAL_SCORE = 0;
     private int currentLevelScore;
@@ -89,5 +89,11 @@ public abstract class GameLevel {
 	public boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}
+
+	public static int getCurrentLevel() {
+		return currentLevel;
+	}
+	
+	
 	
 }
