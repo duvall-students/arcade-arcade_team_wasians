@@ -76,20 +76,16 @@ public class PlayerMessaging {
 		if (GameLevel.areAllLevelsPassed(level.getLevelNum())) {
 			endMessage.setText("You win!");
 			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
-			Thread.sleep(500);
-			Platform.exit();
 		}
 		return scoreMessage;
 	}
 	public static Text displayDeathMessage(Player player){
-		endMessage.setX(250);
-		endMessage.setY(250);
+		endMessage.setX(200);
+		endMessage.setY(300);
 		
 		if (player.getHealth() == 0) {
 			endMessage.setText("You lose! :(");
 			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
-			//Platform.wait(500);
-			Platform.exit();
 		}
 		return endMessage;
 		
