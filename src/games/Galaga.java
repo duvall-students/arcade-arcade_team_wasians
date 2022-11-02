@@ -114,6 +114,8 @@ public class Galaga extends Application implements Game {
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
+		}
+		else {
 			
 		}
 	}

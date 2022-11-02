@@ -27,6 +27,7 @@ public class PlayerMessaging {
 	private static final Text levelMessage = new Text("Level: ");
 	private static final Text endMessage = new Text("");
 	private static final Text powerUpMessage = new Text("Power up!!!");
+	private static final Text startingMessage = new Text("Press left or right arrow key to Start");
 	
 	
 	public PlayerMessaging(Player player) {
@@ -71,13 +72,7 @@ public class PlayerMessaging {
 	public static Text displayEndMessage(Player player, GalagaLevelControl level) throws InterruptedException {
 		endMessage.setX(150);
 		endMessage.setY(150);
-		
-		if (player.getHealth() == 0) {
-			endMessage.setText("You lose! :(");
-			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
-			Thread.sleep(500);
-			Platform.exit();
-		}
+
 		if (GameLevel.areAllLevelsPassed(level.getLevelNum())) {
 			endMessage.setText("You win!");
 			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
@@ -98,6 +93,13 @@ public class PlayerMessaging {
 		}
 		return endMessage;
 		
+	}
+	
+	public static Text displayStartingMessage() {
+		startingMessage.setX(150);
+		startingMessage.setY(250);
+		startingMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+		return startingMessage;
 	}
 
 	public static Text getScoremessage() {
