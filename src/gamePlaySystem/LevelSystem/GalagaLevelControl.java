@@ -24,6 +24,7 @@ public class GalagaLevelControl extends GameLevelControl {
 		levelUpNum = 1;
 	}
 	
+	//
 	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BulletGalaga bullet, Player player, int levelNum) {
 		try {
 			if (levelNum == 1) {
