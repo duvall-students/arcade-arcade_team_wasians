@@ -14,7 +14,7 @@ public class NPCGalagaWingedPowerUp extends NPCGalaga {
 	public NPCGalagaWingedPowerUp(int eachRowWingeds, int wingedsOffsetFromTop, String imageSource) {
 		super(eachRowWingeds, wingedsOffsetFromTop);
 		npcImageSrc = imageSource;
-		wingedVelocity = new Point2D(0, -20);
+//		wingedVelocity = new Point2D(0, -20);
 	}
 	
 //	public void move (double elapsedTime) {

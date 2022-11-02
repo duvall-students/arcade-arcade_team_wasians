@@ -93,7 +93,7 @@ public class Galaga extends Application implements Game {
 		// create the winged layout in specific level
 		level = new GalagaLevelControl(root, levelNum);
 
-		// create player with the particular lives in each level
+		// set up the player with particular lives
 		player = new Player(level.getPlayerAllowedHealth());
 
 		// create the ship

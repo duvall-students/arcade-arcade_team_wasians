@@ -101,7 +101,7 @@ public class Breakout extends Application implements Game{
 	}
 
 	public void moveFrame(double elapsedTime) {
-		// Chris: handles ball's behavior in the scene. (
+		// Chris: handles ball's behavior in the scene.
 		ball.handleBallMovement(elapsedTime, SIZE, platform, level, player);
 		// Brandon
 		// deal with the collision between ball and bricks

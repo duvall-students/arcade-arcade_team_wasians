@@ -26,7 +26,7 @@ import gamePlaySystem.Player;
 public class GalagaLevel_3 extends GalagaLevels {
 
 	private static final int BRICKS_Y_OFFSET = 10;
-	private static final int LEVEL = 1;
+	private static final int LEVEL = 3;
 	private List<GameNPC> allNonPowerUpWingeds;
 	// the layout has row: 7, column: 18; power-up: 9
 	private int[][] LAYOUT_L3 = {

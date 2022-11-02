@@ -48,7 +48,7 @@ public abstract class GameLevelControl {
 	// deal with the collision of the movable and immovable elements
 //	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player);
 	
-	// set up the properties of the level
+	// set up the overall properties of the level
 	private void generateLevel(Group root) {
 		Supplier<GameLevel> supplier = levelToConstructorNoParameter.get(levelNum);
 		gameLevel = supplier.get();

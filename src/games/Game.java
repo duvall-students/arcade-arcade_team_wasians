@@ -29,7 +29,6 @@ public interface Game {
 	public static final int FRAMES_PER_SECOND = 60;
 	public static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
-	
 
 	// the image source of each elements for breakout
 	public static final String PLATFORM_IMAGE = "resources/paddle.gif";

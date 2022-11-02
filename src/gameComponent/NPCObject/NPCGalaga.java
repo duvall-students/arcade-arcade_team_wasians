@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 
 public abstract class NPCGalaga extends GameNPC{
 	
-	// velocity of winged
+	// velocity properties of winged
 	protected Point2D wingedVelocity;
 
 	protected NPCGalaga(int eachRowNpcs, int npcsOffsetFromTop) {

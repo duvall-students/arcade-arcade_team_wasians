@@ -14,7 +14,7 @@ public class NPCGalagaWingedYellow extends NPCGalaga {
 	public NPCGalagaWingedYellow(int eachRowWingeds, int wingedsOffsetFromTop, String imageSource) {
 		super(eachRowWingeds, wingedsOffsetFromTop);
 		npcImageSrc = imageSource;
-		wingedVelocity = new Point2D(0, -20);
+//		wingedVelocity = new Point2D(0, -20);
 	}
 
 //	protected void move (double elapsedTime) {

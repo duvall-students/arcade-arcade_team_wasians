@@ -75,7 +75,6 @@ public class GalagaLevel_1 extends GalagaLevels {
 					player.addScore(5);
 				}
 //				bullet.setVelocity(0, 0);
-				
 			}
 			winCheckForLevel();
 		}

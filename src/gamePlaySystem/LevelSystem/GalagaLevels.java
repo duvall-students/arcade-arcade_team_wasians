@@ -63,12 +63,6 @@ public abstract class GalagaLevels extends GameLevel {
 	
 	protected abstract void moveWinged(double wingedYVelocityOption, GalagaShip ship);
 	
-//	protected void moveWinged(double wingedYVelocityOption, GalagaShip ship) {
-//		for (GameNPC npc: allNPCs) {
-//			((NPCGalaga) npc).move(wingedYVelocityOption, ship);
-//		}
-//	}
-	
 	private void initializeWingedsListOfEachWingedType() {
 		redWinged = new ArrayList<>();
 		greenWinged = new ArrayList<>();

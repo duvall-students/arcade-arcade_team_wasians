@@ -65,6 +65,7 @@ public class GalagaLevelControl extends GameLevelControl {
 		myStage.close();
 	}
 	
+	// 
 	public void getWingedMove(double elapsedTime, GalagaShip ship) {
 		double wingedYVelocityOption = elapsedTime;
 		if (levelNum == LEVEL_1) {

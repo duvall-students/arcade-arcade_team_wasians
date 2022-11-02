@@ -23,7 +23,7 @@ import gamePlaySystem.Player;
 public class GalagaLevel_2 extends GalagaLevels {
 
 	private static final int BRICKS_Y_OFFSET = 20;
-	private static final int LEVEL = 1;
+	private static final int LEVEL = 2;
 	// the layout has row: 6, column: 16; power-up: 6
 	private int[][] LAYOUT_L2 = {
 			{1, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 1, 0, 0, 1},
