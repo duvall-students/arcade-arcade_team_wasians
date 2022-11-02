@@ -31,18 +31,23 @@ public abstract class GameLevelControl {
 		generateLevel(root);
 	}
 	
+	// calling default constructors of BreakoutLevels
 	protected abstract void setUpLevelToConstructorNoParameterMap();
 	
+	// deal with the level transition when the player wins
 	protected abstract void levelTransition(Stage myStage, Player player);
 	
-	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player);
+	// deal with the collision of the movable and immovable elements
+//	public abstract void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player);
 	
+	// set up the properties of the level
 	private void generateLevel(Group root) {
 		Supplier<GameLevel> supplier = levelToConstructorNoParameter.get(levelNum);
 		gameLevel = supplier.get();
 		gameLevel.createNPCs(root);
 	}
 	
+	// get the player allowed health in specific level
 	public int getPlayerAllowedHealth() {
 		return gameLevel.getAllowedHealth();
 	}

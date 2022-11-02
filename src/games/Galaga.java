@@ -75,7 +75,8 @@ public class Galaga extends Application implements Game{
 		
 		// create the winged layout in specific level
 //		level.createNPCs(root);
-		level = new GalagaLevelControl(root, levelNum);
+//		level = new GalagaLevelControl(root, levelNum);
+		level = new GalagaLevelControl(root, 3);
 
 		// create player with the particular lives in each level
 		player = new Player(level.getPlayerAllowedHealth());

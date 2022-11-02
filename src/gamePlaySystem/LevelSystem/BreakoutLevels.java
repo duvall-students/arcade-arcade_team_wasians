@@ -59,10 +59,10 @@ public abstract class BreakoutLevels extends GameLevel {
     	}
 	}
 	
+	// load the brick on the screen
 	protected abstract void generateBricks(int col, int row, Group root, String brickType);
 	
 	// deal with the collision of the ball and bricks
-	@Override
 	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) {
 		final boolean BREAKABLE = true;
 		final boolean UNBREAKABLE = false;
@@ -88,10 +88,12 @@ public abstract class BreakoutLevels extends GameLevel {
 		}
 	}
 	
+	// get the ball starting position
 	public double getBallStartingPositionNow() {
 		return STARTING_POSITION;
 	}
 	
+	// initialize each brick type list
 	private void initializeBricksListOfEachBrickType() {
 		powerUpBricks = new ArrayList<>();
 		breakableBricks = new ArrayList<>();
@@ -100,7 +102,6 @@ public abstract class BreakoutLevels extends GameLevel {
 	
 	// associate the level with its particular power-up in Breakout Game
 	private void setPowerUpBrickSettingsInLevels() {
-		// variables about the level
 		final int LEVEL_1 = 1;
 		final int LEVEL_2 = 2;
 		final int LEVEL_3 = 3;
