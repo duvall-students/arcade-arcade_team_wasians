@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import gameComponent.MovableObject.BallBreakout;
 import gamePlaySystem.Player;
+import gamePlaySystem.PlayerMessaging;
 
 /**
  * @author Xu Yan
@@ -38,8 +39,7 @@ public class BreakoutLevelControl extends GameLevelControl {
 	@Override
 	protected void levelTransition(Stage myStage, Player player) {
 		if (gameLevel.areAllLevelsPassed(levelNum)) {
-			gameLevel.winningMessage();
-			System.exit(0);
+			PlayerMessaging.displayEndMessage();
 		}
 		levelNum += levelUpNum;
 		player.setReadytoPlay(false);
@@ -63,7 +63,7 @@ public class BreakoutLevelControl extends GameLevelControl {
 		return ((BreakoutLevels) gameLevel).getBallStartingPositionNow();
 	}
 	
-	// check if the player wins in the specific level of Breakout
+	// check if the player wins at the specific level in Breakout
 	public boolean checkIsWinInEachLevel() {
 //		return gameLevel.isWinnerInLevel;
 		return gameLevel.getIsWinningAtEachLevel();

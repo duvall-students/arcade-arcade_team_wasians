@@ -12,6 +12,7 @@ import gamePlaySystem.LevelSystem.BreakoutLevel_3;
 import gamePlaySystem.LevelSystem.GalagaLevel_1;
 import gamePlaySystem.LevelSystem.GalagaLevel_2;
 import gamePlaySystem.LevelSystem.GalagaLevel_3;
+import gamePlaySystem.PlayerMessaging;
 
 import java.util.HashMap;
 import java.util.function.Supplier;
@@ -23,9 +24,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import gamePlaySystem.PlayerMessaging;
 
 /**
  * 
@@ -33,7 +34,8 @@ import gamePlaySystem.PlayerMessaging;
  */
 
 public class Breakout extends Application implements Game{
-
+	
+	public static final Paint BACKGROUND = Color.AZURE;
 
 	// properties and variables associated with the Level
 	private int levelNum = 1;
@@ -48,10 +50,6 @@ public class Breakout extends Application implements Game{
 	protected Group root;
 	protected Player player;
 	
-	private HashMap<Integer, Supplier<GameLevel>> levelToConstructorNoParameter;
-
-	// private List<Brick> bricks;
-
 	@Override
 	public void start(Stage stage) {
 
@@ -75,11 +73,9 @@ public class Breakout extends Application implements Game{
 		// create one top level collection to organize the things in the scene
 		root = new Group();
 		// create the bricks layout in specific level
-//		level.createNPCs(root);
 		level = new BreakoutLevelControl(root, levelNum);
 
 		// create player with the particular lives in each level
-//		player = new Player(level.getAllowedHealth());
 		player = new Player(level.getPlayerAllowedHealth());
 
 		// create the ball
@@ -93,6 +89,9 @@ public class Breakout extends Application implements Game{
 		root.getChildren().add(PlayerMessaging.displayHealth(player));
 		root.getChildren().add(PlayerMessaging.displayBreakoutLevel(level));
 		root.getChildren().add(PlayerMessaging.displayScore(player));
+		root.getChildren().add(PlayerMessaging.displayDeathMessage(player));
+		root.getChildren().add(PlayerMessaging.displayStartingMessage());
+
 
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);
@@ -102,11 +101,18 @@ public class Breakout extends Application implements Game{
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
+			PlayerMessaging.displayStartingMessage().setText("");
+		}
+		else if (player.getHealth() == 0) {
+			PlayerMessaging.displayStartingMessage().setText("");
+		}
+		else {
+			PlayerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
 		}
 	}
 
 	public void moveFrame(double elapsedTime) {
-		// Chris: handles ball's behavior in the scene. (
+		// Chris: handles ball's behavior in the scene.
 		ball.handleBallMovement(elapsedTime, SIZE, platform, level, player);
 		// Brandon
 		// deal with the collision between ball and bricks
