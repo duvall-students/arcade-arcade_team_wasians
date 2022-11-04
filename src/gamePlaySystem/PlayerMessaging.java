@@ -1,12 +1,14 @@
 package gamePlaySystem;
 
+import java.awt.Color;
 import java.util.logging.Level;
 
 import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.GalagaLevelControl;
 import gamePlaySystem.LevelSystem.GameLevel;
 import gamePlaySystem.LevelSystem.GameLevelControl;
-import javafx.application.Application; 
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -25,6 +27,7 @@ public class PlayerMessaging {
 	private static final Text levelMessage = new Text("Level: ");
 	private static final Text endMessage = new Text("");
 	private static final Text powerUpMessage = new Text("Power up!!!");
+	private static final Text startingMessage = new Text("Press left or right arrow key to Start");
 	
 	
 	public PlayerMessaging(Player player) {
@@ -33,35 +36,71 @@ public class PlayerMessaging {
 
 	// display current score
 	public static Text displayScore(Player player) {
-		scoreMessage.setX(50);
-		scoreMessage.setY(25);
+		scoreMessage.setX(40);
+		scoreMessage.setY(20);
 		scoreMessage.setText("Score: " + player.getScore());
+		scoreMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return scoreMessage;
 	}
 
-	// display health
+	// displays player's health
 	public static Text displayHealth(Player player) {
-		healthMessage.setX(200);
-		healthMessage.setY(25);
+		healthMessage.setX(190);
+		healthMessage.setY(20);		
 		healthMessage.setText("Health: " + player.getHealth());
+		healthMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return healthMessage;
 	}
 	
-	// display level number
+	// display galaga level number
 	public static Text displayGalagaLevel(GalagaLevelControl level) {
 		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
-		getLevelmessage().setX(350);
-		getLevelmessage().setY(25);
+		getLevelmessage().setX(340);
+		getLevelmessage().setY(20);
+		levelMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return getLevelmessage();
 	}
 	
+	// displays the breakout level
 	public static Text displayBreakoutLevel(BreakoutLevelControl level) {
 		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
 		getLevelmessage().setX(350);
-		getLevelmessage().setY(25);
+		getLevelmessage().setY(20);
+		levelMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
 		return getLevelmessage();
 	}
+	
+	// displays winning message
+	public static Text displayEndMessage() {
+		endMessage.setX(200);
+		endMessage.setY(300);
+		endMessage.setText("You win!");
+		endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+		return scoreMessage;
+	}
+	
+	// detects, displays, death and leads to end game
+	public static Text displayDeathMessage(Player player){
+		endMessage.setX(200);
+		endMessage.setY(300);
+		
+		if (player.getHealth() == 0) {
+			endMessage.setText("You lose! :(");
+			endMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+		}
+		return endMessage;
+		
+	}
+	
+	//tells player how to start game
+	public static Text displayStartingMessage() {
+		startingMessage.setX(150);
+		startingMessage.setY(250);
+		startingMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
+		return startingMessage;
+	}
 
+	
 	public static Text getScoremessage() {
 		return scoreMessage;
 	}

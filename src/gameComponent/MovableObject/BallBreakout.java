@@ -3,10 +3,7 @@ package gameComponent.MovableObject;
 import gamePlaySystem.Player;
 import gameComponent.ControlUnit.BreakOutPaddle;
 import gamePlaySystem.LevelSystem.BreakoutLevelControl;
-import gamePlaySystem.LevelSystem.BreakoutLevels;
-
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class BallBreakout extends MovableObject{
@@ -50,7 +47,6 @@ public class BallBreakout extends MovableObject{
 		
 		if (isSideHit(rectangle)){
 			reverseX(isPaddle);
-			//pushOut(rectangle);
 		}
 		
 		if (isCornerHit(rectangle)) {

@@ -37,7 +37,7 @@ public interface Game {
 
 	public void start(Stage stage);
 
-	public Scene setupGame(int size, Paint background);
+	public Scene setupGame(int size, Paint background) throws InterruptedException;
 
 	public void step(double elapsedTime);
 

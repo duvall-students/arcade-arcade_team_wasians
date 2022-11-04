@@ -12,6 +12,7 @@ import gameComponent.NPCObject.NPCGalaga;
 import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedYellow;
 import gamePlaySystem.Player;
+import gamePlaySystem.PlayerMessaging;
 import games.Galaga;
 
 /**
@@ -71,10 +72,15 @@ public class GalagaLevel_1 extends GalagaLevels {
 				root.getChildren().remove(npc.getNPC());
 				root.getChildren().remove(bullet.getView());
 				player.addScore(1);
+				PlayerMessaging.displayScore(player);
 				if (powerUpWinged.contains(npc)) {
 					player.addScore(5);
+					PlayerMessaging.displayScore(player);
 				}
-//				bullet.setVelocity(0, 0);
+
+				bullet.setVelocity(0, -10);
+				
+
 			}
 			winCheckForLevel();
 		}
@@ -85,6 +91,7 @@ public class GalagaLevel_1 extends GalagaLevels {
 		double wingedYVelocity = 10;
 		for (GameNPC npc: allNPCs) {
 			((NPCGalaga) npc).move(wingedYVelocity, elapsedTime, ship);
+			
 		}
 	}
 	
