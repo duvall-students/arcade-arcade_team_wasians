@@ -70,7 +70,7 @@ public class GalagaLevel_1 extends GalagaLevels {
 				player.addScore(1);
 				if (powerUpWinged.contains(npc)) {
 				}
-				bullet.setVelocity(0, 0);
+				bullet.setVelocity(0, -10);
 				
 			}
 			winCheckForLevel();

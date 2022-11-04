@@ -1,6 +1,11 @@
 package gameComponent.ControlUnit;
 import javafx.geometry.Point2D;
 
+/**
+ * @author Chris lee
+ * extends ControlUnit, handles behaviors needed by GalagaShip. 
+ */
+
 public class GalagaShip extends ControlUnit {
 	
 	public static final int SHIP_WIDTH = 50;

@@ -1,7 +1,8 @@
 package gameComponent.ControlUnit;
 
 /**
- * @author chris lee
+ * @author Chris lee
+ * handles ControlUnit behaviors that are capable of moving left and right on the screen.
  * 
  */
 

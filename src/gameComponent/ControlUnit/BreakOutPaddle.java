@@ -1,7 +1,7 @@
 package gameComponent.ControlUnit;
 
 /**
- * @author chris lee
+ * @author Chris lee
  * handles Platform behaviors such as, moving left and right on the screen
  */
 
@@ -40,10 +40,6 @@ public class BreakOutPaddle extends ControlUnit{
 
 	public BreakOutPaddle(int canvasSize) {
 		super(PLATFORM_IMAGE, canvasSize, canvasSize * PLATFORM_X_LOC - PLATFORM_HALF_WIDTH, PLATFORM_Y_LOC * canvasSize, PADDLE_WIDTH, PADDLE_HEIGHT);
-		
-//		image.setX((canvasSize * PLATFORM_X_LOC) - PLATFORM_HALF_WIDTH);
-//		image.setY(PLATFORM_Y_LOC * canvasSize); 
-//		image.setFitWidth(RECTANGLE_WIDTH);
 	}
 
 	
