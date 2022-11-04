@@ -22,7 +22,7 @@ public class Player {
 	private int health;
 	private int score;
 	private boolean isReadyToPlay;
-	public static String MAX_SCORE_FILE = "resources/maxScore.txt";
+	public static String MAX_SCORE_FILE = "resources/maxScore_";
 	
 	public Player(int health) {
 		this.health = health;
@@ -63,8 +63,8 @@ public class Player {
 		score += scoreAmt;
 	}
 	
-	public int getMaxScore() {
-		File maxData = new File(MAX_SCORE_FILE);
+	public int getMaxScore(String gameName) {
+		File maxData = new File(MAX_SCORE_FILE + gameName + ".txt");
 		try{
 			Scanner reader = new Scanner(maxData);
 			if (reader.hasNextLine()) {
@@ -81,9 +81,9 @@ public class Player {
 		return 0;
 	}
 	
-	public void updateMaxScore() {
-		if (getMaxScore() > score){
-			File originalFile = new File(MAX_SCORE_FILE);
+	public void updateMaxScore(String gameName) {
+		if (getMaxScore(gameName) > score){
+			File originalFile = new File(MAX_SCORE_FILE + gameName + ".txt");
 			File tempFile = new File("tempfile.txt");
 	        try {
 				PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
