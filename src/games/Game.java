@@ -22,7 +22,6 @@ import javafx.util.Duration;
 public interface Game {
 
 	// properties of the canvas
-//	public static final Paint BACKGROUND = Color.AZURE;
 	public static final int SIZE = 400;
 
 	// properties of the keyboard key movement

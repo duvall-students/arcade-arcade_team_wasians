@@ -35,13 +35,14 @@ import javafx.util.Duration;
 
 public class Breakout extends Application implements Game{
 	
+	// background color
 	public static final Paint BACKGROUND = Color.AZURE;
 
 	// properties and variables associated with the Level
 	private int levelNum = 1;
 	private int levelUpNum = 1;
 
-	// properties and variables associated with the Level
+	// properties and variables associated with the Breakout
 	private BreakoutLevelControl level;
 	private BallBreakout ball;
 	private BreakOutPaddle platform;
@@ -49,6 +50,7 @@ public class Breakout extends Application implements Game{
 	protected Stage myStage;
 	protected Group root;
 	protected Player player;
+	private PlayerMessaging playerMessaging;
 	
 	@Override
 	public void start(Stage stage) {
@@ -86,12 +88,13 @@ public class Breakout extends Application implements Game{
 		this.platform = new BreakOutPaddle(SIZE);
 		root.getChildren().add(platform.getShape());
 		
-		root.getChildren().add(PlayerMessaging.displayHealth(player));
-		root.getChildren().add(PlayerMessaging.displayBreakoutLevel(level));
-		root.getChildren().add(PlayerMessaging.displayScore(player));
-		root.getChildren().add(PlayerMessaging.displayDeathMessage(player));
-		root.getChildren().add(PlayerMessaging.displayStartingMessage());
-
+		// display the message
+		playerMessaging = new PlayerMessaging(player);
+		root.getChildren().add(playerMessaging.displayHealth(player));
+		root.getChildren().add(playerMessaging.displayBreakoutLevel(level));
+		root.getChildren().add(playerMessaging.displayScore(player));
+		root.getChildren().add(playerMessaging.displayDeathMessage(player));
+		root.getChildren().add(playerMessaging.displayStartingMessage());
 
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);
@@ -101,13 +104,13 @@ public class Breakout extends Application implements Game{
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
-			PlayerMessaging.displayStartingMessage().setText("");
+			playerMessaging.displayStartingMessage().setText("");
 		}
 		else if (player.getHealth() == 0) {
-			PlayerMessaging.displayStartingMessage().setText("");
+			playerMessaging.displayStartingMessage().setText("");
 		}
 		else {
-			PlayerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
+			playerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
 		}
 	}
 
@@ -116,7 +119,7 @@ public class Breakout extends Application implements Game{
 		ball.handleBallMovement(elapsedTime, SIZE, platform, level, player);
 		// Brandon
 		// deal with the collision between ball and bricks
-		level.getElementsCollisionInEachLevel(myStage, root, ball, player);
+		level.getElementsCollisionInEachLevel(myStage, root, ball, player, playerMessaging);
 		// Blake: level transition
 		// Move to the next level if the player achieves the winning goal in the
 		// specific level; Or print the winning message and terminate the game when the

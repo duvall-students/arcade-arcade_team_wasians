@@ -15,12 +15,13 @@ import gamePlaySystem.PlayerMessaging;
  * @author Xu Yan
  * 
  * BreakoutLevels.java
+ * Implement the creation of NPC, the motion of NPC, collision between movable player objects and NPC objects,
+ * and other game and level properties in the Breakout.
  * 
  */
 
 public abstract class BreakoutLevels extends GameLevel {
 
-	// variables / properties about the level in Breakout Game
 	// variables associated with bricks in each level
 	protected List<GameNPC> breakableBricks;
 	protected List<GameNPC> unbreakableBricks;
@@ -64,7 +65,7 @@ public abstract class BreakoutLevels extends GameLevel {
 	protected abstract void generateBricks(int col, int row, Group root, String brickType);
 	
 	// deal with the collision of the ball and bricks
-	protected void collideWithNPCs(Group root, BallBreakout ball, Player player) throws InterruptedException {
+	protected void collideWithNPCs(Group root, BallBreakout ball, Player player, PlayerMessaging playerMessaging) {
 		final boolean BREAKABLE = true;
 		final boolean UNBREAKABLE = false;
 		final boolean isNotPaddle = false;
@@ -79,14 +80,14 @@ public abstract class BreakoutLevels extends GameLevel {
 					allNPCs.remove(npc);
 					root.getChildren().remove(npc.getNPC());
 					player.addScore(1);
-					PlayerMessaging.displayScore(player);
+					playerMessaging.displayScore(player);
 				}
 				if (powerUpBricks.contains(npc)) {
 					ball.powerUpBall();
 				}
 				ball.bounceOnRectangle(npc.getNPCImageView(), isNotPaddle);
 			}
-			PlayerMessaging.displayDeathMessage(player);
+			playerMessaging.displayDeathMessage(player);
 			winCheckForLevel();
 		}
 	}

@@ -5,7 +5,6 @@ import javafx.scene.Group;
 import java.util.Collection;
 
 import gameComponent.ControlUnit.GalagaShip;
-import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCGalaga;
@@ -13,12 +12,12 @@ import gameComponent.NPCObject.NPCGalagaWingedPowerUp;
 import gameComponent.NPCObject.NPCGalagaWingedYellow;
 import gamePlaySystem.Player;
 import gamePlaySystem.PlayerMessaging;
-import games.Galaga;
 
 /**
  * @author Xu Yan
  * 
  * GalagaLevel_1.java
+ * Implement setting the related properties of the Level_1 in the Galaga.
  * 
  */
 
@@ -36,8 +35,6 @@ public class GalagaLevel_1 extends GalagaLevels {
 			{0, 0, 0, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 0, 0, 0},
 	};
 	
-//	private boolean collided;
-
 	public GalagaLevel_1() {
 		super(BRICKS_Y_OFFSET, LEVEL);
 		allowedHealth = 5;
@@ -63,7 +60,7 @@ public class GalagaLevel_1 extends GalagaLevels {
 	}
 	
 	// deal with the collision of the bullet and winged
-	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList) {
+	protected void collideWithNPCs(Group root, BulletGalaga bullet, Player player, Collection<BulletGalaga> bulletList, PlayerMessaging playerMessaging) {
 		for (GameNPC npc: allNPCs) {
 			if (bullet.getView().getBoundsInParent().intersects(npc.getNPC().getBoundsInParent())) {
 				yellowWinged.remove(npc);
@@ -72,20 +69,17 @@ public class GalagaLevel_1 extends GalagaLevels {
 				root.getChildren().remove(npc.getNPC());
 				root.getChildren().remove(bullet.getView());
 				player.addScore(1);
-				PlayerMessaging.displayScore(player);
+				playerMessaging.displayScore(player);
 				if (powerUpWinged.contains(npc)) {
 					player.addScore(5);
-					PlayerMessaging.displayScore(player);
+					playerMessaging.displayScore(player);
 				}
-
-				bullet.setVelocity(0, -10);
-				
-
 			}
 			winCheckForLevel();
 		}
 	}
 	
+	// set the moving properties of the winged
 	@Override
 	protected void moveWinged(double elapsedTime, GalagaShip ship) {
 		double wingedYVelocity = 10;

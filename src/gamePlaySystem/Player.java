@@ -1,6 +1,5 @@
 package gamePlaySystem;
 
-import gamePlaySystem.LevelSystem.GameLevel;
 import javafx.scene.text.Text;
 
 import java.io.File;
@@ -9,14 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import gamePlaySystem.PlayerMessaging;
 
+import gamePlaySystem.LevelSystem.GameLevel;
+import gamePlaySystem.PlayerMessaging;
 
 /**
  * @author chris lee
  * handles Player information such as health, score, and whether the player is ready to play. 
  */
-
 
 public class Player {
 	private int health;
@@ -52,7 +51,8 @@ public class Player {
 	
 	public void playerLoseHealth(Player player) {
 		health--;
-		PlayerMessaging.displayHealth(player);
+		PlayerMessaging myPlayerMessaging = new PlayerMessaging(player);
+		myPlayerMessaging.displayHealth(player);
 	}
 	
 	public int getScore() {
@@ -70,13 +70,13 @@ public class Player {
 			if (reader.hasNextLine()) {
 				int maxScore = reader.nextInt();
 				reader.close();
-				
+
 				return maxScore;
 			}
 		}
 		catch (FileNotFoundException e) {
-		      System.out.println("No Such File Found");
-		      e.printStackTrace();
+			System.out.println("No Such File Found");
+			e.printStackTrace();
 		}
 		return 0;
 	}
@@ -85,30 +85,25 @@ public class Player {
 		if (getMaxScore(gameName) > score){
 			File originalFile = new File(MAX_SCORE_FILE + gameName + ".txt");
 			File tempFile = new File("tempfile.txt");
-	        try {
+			try {
 				PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
 				pw.println(score);
-				
-				if (!new File(MAX_SCORE_FILE).delete()) {
-		            System.out.println("Could not delete file");
-		            return;
-		        }
 
-		        // Rename the new file to the filename the original file had.
-		        if (!tempFile.renameTo(originalFile)) {
-		            System.out.println("Could not rename file");
-		        }
-		        
+				if (!new File(MAX_SCORE_FILE).delete()) {
+					System.out.println("Could not delete file");
+					return;
+				}
+
+				// Rename the new file to the filename the original file had.
+				if (!tempFile.renameTo(originalFile)) {
+					System.out.println("Could not rename file");
+				}
+
 			} catch (IOException e) {
 				System.out.println("couln't write on the file.");
 				e.printStackTrace();
 			}
-	       
+
 		}
-		
-		
-		
-        
-        
 	}
 }

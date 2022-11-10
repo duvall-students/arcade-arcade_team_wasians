@@ -5,14 +5,12 @@ import javafx.scene.Group;
 import gameComponent.NPCObject.NPCBreakoutBrickBreakable;
 import gameComponent.NPCObject.NPCBreakoutBrickPowerUp;
 import gameComponent.NPCObject.NPCBreakoutBrickUnbreakable;
-import gameComponent.MovableObject.BallBreakout;
-import gameComponent.NPCObject.GameNPC;
-import gamePlaySystem.Player;
 
 /**
  * @author Xu Yan
  * 
  * BreakoutLevel_3.java
+ * Implement setting the related properties of the Level_3 in the Breakout.
  * 
  */
 

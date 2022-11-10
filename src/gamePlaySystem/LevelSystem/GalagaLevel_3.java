@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javafx.scene.Group;
+
 import gameComponent.ControlUnit.GalagaShip;
-import gameComponent.MovableObject.BallBreakout;
 import gameComponent.MovableObject.BulletGalaga;
 import gameComponent.NPCObject.GameNPC;
 import gameComponent.NPCObject.NPCGalaga;
@@ -20,11 +20,13 @@ import gamePlaySystem.Player;
  * @author Xu Yan
  * 
  * GalagaLevel_3.java
+ * Implement setting the related properties of the Level_3 in the Galaga.
  * 
  */
 
 public class GalagaLevel_3 extends GalagaLevels {
 
+	// display of winged in Level_3
 	private static final int BRICKS_Y_OFFSET = 10;
 	private static final int LEVEL = 3;
 	private List<GameNPC> allNonPowerUpWingeds;
@@ -40,7 +42,6 @@ public class GalagaLevel_3 extends GalagaLevels {
 	};
 
 	public GalagaLevel_3() {
-		// super parameters: (brickRows, eachRowBrick, unbreakableBricksQty, emptySpaceQty, bricksYOffset)
 		super(BRICKS_Y_OFFSET, LEVEL);
 		allNonPowerUpWingeds = new ArrayList<>();
 		allowedHealth = 3;
@@ -94,6 +95,7 @@ public class GalagaLevel_3 extends GalagaLevels {
 		}
 	}
 	
+	// set the moving properties of the winged
 	@Override
 	protected void moveWinged(double elapsedTime, GalagaShip ship) {
 		double wingedYVelocity = 3;

@@ -1,33 +1,33 @@
 package gamePlaySystem;
 
-import java.awt.Color;
-import java.util.logging.Level;
+import javafx.scene.text.Text; 
+//import javafx.application.Application;
+//import javafx.application.Platform;
+//import javafx.scene.Group;
+//import javafx.scene.Node;
+//import javafx.scene.Scene;
+//import javafx.scene.layout.VBox;
+//import javafx.stage.Stage; 
+
+//import java.awt.Color;
+//import java.util.logging.Level;
 
 import gamePlaySystem.LevelSystem.BreakoutLevelControl;
 import gamePlaySystem.LevelSystem.GalagaLevelControl;
-import gamePlaySystem.LevelSystem.GameLevel;
-import gamePlaySystem.LevelSystem.GameLevelControl;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage; 
-import javafx.scene.text.Text; 
-import gamePlaySystem.LevelSystem.GameLevel;
 
-
-
+/**
+ * @author Blake Byerly
+ * 
+ */
 
 public class PlayerMessaging {
 	//variables
-	private static final Text scoreMessage = new Text("Score: ");
-	private static final Text healthMessage = new Text("Health Left: ");
-	private static final Text levelMessage = new Text("Level: ");
-	private static final Text endMessage = new Text("");
-	private static final Text powerUpMessage = new Text("Power up!!!");
-	private static final Text startingMessage = new Text("Press left or right arrow key to Start");
+	private final Text scoreMessage = new Text("Score: ");
+	private final Text healthMessage = new Text("Health Left: ");
+	private final Text levelMessage = new Text("Level: ");
+	private final Text endMessage = new Text("");
+	private final Text powerUpMessage = new Text("Power up!!!");
+	private final Text startingMessage = new Text("Press left or right arrow key to Start");
 	
 	
 	public PlayerMessaging(Player player) {
@@ -35,7 +35,7 @@ public class PlayerMessaging {
 	}
 
 	// display current score
-	public static Text displayScore(Player player) {
+	public Text displayScore(Player player) {
 		scoreMessage.setX(40);
 		scoreMessage.setY(20);
 		scoreMessage.setText("Score: " + player.getScore());
@@ -44,7 +44,7 @@ public class PlayerMessaging {
 	}
 
 	// displays player's health
-	public static Text displayHealth(Player player) {
+	public Text displayHealth(Player player) {
 		healthMessage.setX(190);
 		healthMessage.setY(20);		
 		healthMessage.setText("Health: " + player.getHealth());
@@ -53,8 +53,9 @@ public class PlayerMessaging {
 	}
 	
 	// display galaga level number
-	public static Text displayGalagaLevel(GalagaLevelControl level) {
-		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
+	public Text displayGalagaLevel(GalagaLevelControl level) {
+//		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
+		levelMessage.setText("Level: " + level.getLevelNum());
 		getLevelmessage().setX(340);
 		getLevelmessage().setY(20);
 		levelMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
@@ -62,8 +63,9 @@ public class PlayerMessaging {
 	}
 	
 	// displays the breakout level
-	public static Text displayBreakoutLevel(BreakoutLevelControl level) {
-		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
+	public Text displayBreakoutLevel(BreakoutLevelControl level) {
+//		levelMessage.setText("Level: " + GameLevel.getCurrentLevel());
+		levelMessage.setText("Level: " + level.getLevelNum());
 		getLevelmessage().setX(350);
 		getLevelmessage().setY(20);
 		levelMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
@@ -71,7 +73,7 @@ public class PlayerMessaging {
 	}
 	
 	// displays winning message
-	public static Text displayEndMessage() {
+	public Text displayEndMessage() {
 		endMessage.setX(200);
 		endMessage.setY(300);
 		endMessage.setText("You win!");
@@ -80,7 +82,7 @@ public class PlayerMessaging {
 	}
 	
 	// detects, displays, death and leads to end game
-	public static Text displayDeathMessage(Player player){
+	public Text displayDeathMessage(Player player){
 		endMessage.setX(200);
 		endMessage.setY(300);
 		
@@ -93,7 +95,7 @@ public class PlayerMessaging {
 	}
 	
 	//tells player how to start game
-	public static Text displayStartingMessage() {
+	public Text displayStartingMessage() {
 		startingMessage.setX(150);
 		startingMessage.setY(250);
 		startingMessage.setFill(javafx.scene.paint.Color.BLUEVIOLET);
@@ -101,11 +103,11 @@ public class PlayerMessaging {
 	}
 
 	
-	public static Text getScoremessage() {
+	public Text getScoremessage() {
 		return scoreMessage;
 	}
 
-	public static Text getLevelmessage() {
+	public Text getLevelmessage() {
 		return levelMessage;
 	}
 

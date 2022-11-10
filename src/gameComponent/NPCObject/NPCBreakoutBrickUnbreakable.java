@@ -4,6 +4,7 @@ package gameComponent.NPCObject;
  * @author Xu Yan
  * 
  * NPCBreakoutBrickUnbreakable.java
+ * Implement setting the related properties of unbreakable bricks in the Breakout.
  * 
  */
 
