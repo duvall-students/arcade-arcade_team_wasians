@@ -14,6 +14,8 @@ import gamePlaySystem.PlayerMessaging;
  * @author Xu Yan
  * 
  * BreakoutLevelControl.java
+ * Implement the motion of NPC, collision between movable player objects and NPC objects, level transition, 
+ * and other game and level general control properties in the Breakout.
  * 
  */
 
@@ -25,21 +27,23 @@ public class BreakoutLevelControl extends GameLevelControl {
 	}
 	
 	// deal with the collision of the movable and immovable elements
-	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player) {
+	public void getElementsCollisionInEachLevel(Stage myStage, Group root, BallBreakout ball, Player player, PlayerMessaging playerMessaging) {
 		try {
-			((BreakoutLevels) gameLevel).collideWithNPCs(root, ball, player);
-		} catch (Exception e) {}
+			((BreakoutLevels) gameLevel).collideWithNPCs(root, ball, player, playerMessaging);
+		} catch (Exception e) {
+			System.out.println("brick collided");
+		}
 		
 		if (gameLevel.getIsWinningAtEachLevel()) {
-			levelTransition(myStage, player);
+			levelTransition(myStage, player, playerMessaging);
 		}
 	}
 	
 	// deal with the level transition when the player wins in the level
 	@Override
-	protected void levelTransition(Stage myStage, Player player) {
+	protected void levelTransition(Stage myStage, Player player, PlayerMessaging playerMessaging) {
 		if (gameLevel.areAllLevelsPassed(levelNum)) {
-			PlayerMessaging.displayEndMessage();
+			playerMessaging.displayEndMessage();
 		}
 		levelNum += levelUpNum;
 		player.setReadytoPlay(false);

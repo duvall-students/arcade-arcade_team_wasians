@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import javafx.scene.Group;
+
 import gameComponent.ControlUnit.GalagaShip;
-import gameComponent.MovableObject.BallBreakout;
 import gameComponent.NPCObject.GameNPC;
-import gameComponent.NPCObject.NPCGalaga;
-import gamePlaySystem.Player;
 
 /**
  * @author Xu Yan
  * 
  * GalagaLevels.java
+ * Implement the creation of NPC, the motion of NPC, collision between movable player objects and NPC objects,
+ * and other game and level properties in the Galaga.
  * 
  */
 
@@ -32,8 +32,8 @@ public abstract class GalagaLevels extends GameLevel {
     private HashMap<Integer, String> powerUpWingedSettingsInLevels;
     protected HashMap<String, List<GameNPC>> wingedsListOfEachWingedType;
     protected HashMap<Integer, String> integerToStringOfEachWingedType;
-    private final int EACH_WINGED_POINT = 1;
     private HashMap<String, Supplier<GameNPC>> wingedToConstructorNoParameter;
+    private final int EACH_WINGED_POINT = 1;
 	
 	protected GalagaLevels(int wingedsYOffsetInLevel, int levelNum) {
 		super(wingedsYOffsetInLevel, levelNum);
@@ -61,8 +61,10 @@ public abstract class GalagaLevels extends GameLevel {
 	// load the winged on the screen
 	protected abstract void generateWingeds(int col, int row, Group root, String wingedType);
 	
+	// set the moving properties of the winged
 	protected abstract void moveWinged(double wingedYVelocityOption, GalagaShip ship);
 	
+	// create the Array List based on the winged type
 	private void initializeWingedsListOfEachWingedType() {
 		redWinged = new ArrayList<>();
 		greenWinged = new ArrayList<>();
@@ -72,7 +74,6 @@ public abstract class GalagaLevels extends GameLevel {
 	
 	// associate the level with its designated power-up in Galaga Game
 	private void setPowerUpWingedSettingsInLevels() {
-		// variables about the level
 		final int LEVEL_1 = 1;
 		final int LEVEL_2 = 2;
 		final int LEVEL_3 = 3;

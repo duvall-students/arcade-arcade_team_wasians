@@ -2,12 +2,10 @@ package gameComponent.NPCObject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.geometry.Point2D;
 
 import games.Game;
 
@@ -15,15 +13,13 @@ import games.Game;
  * @author Xu Yan
  * 
  * GameNPC.java
+ * Implement setting the related properties of the GameNPC in different Arcade Games.
  * 
  */
 
 public abstract class GameNPC {
 	
 	// variables / properties about the NPC in every Arcade Game.
-	// game display
-	private final int CANVAS_WIDTH = Game.SIZE;
-	private final int CANVAS_HEIGHT = Game.SIZE;
 	// empty spaces between NPCs 
 	private final int NPC_SPACE_H = 6;
 	private final int NPC_SPACE_V = 4;
@@ -42,7 +38,7 @@ public abstract class GameNPC {
 	protected GameNPC(int eachRowNpcs, int npcsOffsetFromTop) {
 		EACH_ROW_NPC = eachRowNpcs;
 		NPC_Y_OFFSET = npcsOffsetFromTop;
-		GENERAL_NPC_WIDTH = (CANVAS_WIDTH + GENERAL_NPC_SHRINK_SIZE) / EACH_ROW_NPC - NPC_SPACE_H;
+		GENERAL_NPC_WIDTH = (Game.SIZE + GENERAL_NPC_SHRINK_SIZE) / EACH_ROW_NPC - NPC_SPACE_H;
 		NPC_IMAGE_WIDTH = GENERAL_NPC_WIDTH;
 	}
 	

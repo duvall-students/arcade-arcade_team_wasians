@@ -1,5 +1,13 @@
 package gameComponent.NPCObject;
 
+/**
+ * @author Xu Yan
+ * 
+ * NPCBreakout.java
+ * Implement setting the related properties of different types of bricks in the Breakout.
+ * 
+ */
+
 public abstract class NPCBreakout extends GameNPC{
 
 	protected NPCBreakout(int eachRowNpcs, int npcsOffsetFromTop) {

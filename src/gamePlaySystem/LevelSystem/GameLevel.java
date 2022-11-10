@@ -2,23 +2,17 @@ package gamePlaySystem.LevelSystem;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.Supplier;
-import java.util.Random;
-import java.util.Arrays;
 
 import javafx.scene.Group;
-import javafx.stage.Stage;
 
-import gameComponent.MovableObject.BallBreakout;
-import gameComponent.MovableObject.MovableObject;
 import gameComponent.NPCObject.GameNPC;
-import gamePlaySystem.Player;
 
 /**
  * @author Blake B. Byerly and Xu Yan
  * 
  * GameLevel.java
+ * Implement the creation of NPC, the motion of NPC, collision between movable player objects and NPC objects,
+ * level and game victory check and response, and other game and level properties in the specific Arcade Game.
  * 
  */
 
@@ -35,11 +29,11 @@ public abstract class GameLevel {
 	protected int npcsOffsetFromTop;
 	private static int currentLevel;
 	// properties of the level points
-    private final int INITIAL_SCORE = 0;
-    private int currentLevelScore;
-    private int totalScore;
+//    private final int INITIAL_SCORE = 0;
+//    private int currentLevelScore;
+//    private int totalScore;
     // properties of the level
-    protected static int TOTAL_LEVELS;
+    protected int TOTAL_LEVELS;
     // variables associated with the player
     protected int allowedHealth;
     // variables that declare victory
@@ -52,23 +46,12 @@ public abstract class GameLevel {
     	// assign variables
     	npcsOffsetFromTop = npcsYOffsetInLevel;
     	currentLevel = levelNum;
-    	currentLevelScore = INITIAL_SCORE;
+//    	currentLevelScore = INITIAL_SCORE;
     }
     
     // create the NPC based on its type
     public abstract void createNPCs(Group root);
-    
-    // load the NPC on the screen
-//    protected abstract void generateNPCs(int col, int row, Group root, String npcType);
-    
-    // deal with the collision of the MovableObject and NPCObject
-//    protected abstract void collideWithNPCs(Group root, BallBreakout ball, Player player);
-//    protected abstract void collideWithNPCs(Group root, MovableObject movableObject, Player player);
-	
-	public int getAllowedHealth() {
-		return allowedHealth;
-	}
-	
+   
 	// check if the player wins in the specific level
 	protected abstract void winCheckForLevel();
 	
@@ -85,15 +68,18 @@ public abstract class GameLevel {
 		return isWinnerInLevel;
 	}
 	
-	// check if 
-	public static boolean areAllLevelsPassed(int currentLevel) {
+	// check if the player passes all levels in the specific game
+	public boolean areAllLevelsPassed(int currentLevel) {
 		return currentLevel == TOTAL_LEVELS;
 	}
-
-	public static int getCurrentLevel() {
-		return currentLevel;
+	
+	// get the player's allowed initial lives
+	public int getAllowedHealth() {
+		return allowedHealth;
 	}
 	
-	
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
 	
 }

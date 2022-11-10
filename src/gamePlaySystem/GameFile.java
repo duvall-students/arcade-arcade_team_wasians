@@ -10,6 +10,8 @@ import java.util.Scanner;
  * @author Xu Yan
  * 
  * GameFile.java
+ * Implement the game-file system responsible for recording the game score according to different Arcade Games.
+ * (some functionalities of the game-file system are also in the "Player.java" from the "gamePlaySystem" package)
  * 
  */
 
@@ -58,8 +60,24 @@ public class GameFile {
 	}
 
 	// read the old score in the score record file and get the highest score
-	private void getHighestScore() {
+	public void getHighestScore() {
+		int maxScore = 0;
 		
+		try {
+			File file = new File(filePath);
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String scoreStr = scanner.nextLine();
+				int scoreInt = Integer.parseInt(scoreStr); 
+				if (scoreInt > maxScore) {
+					maxScore = scoreInt;
+				}
+			}
+			System.out.println(maxScore);
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Something is going wrong.");
+		}
 	}
 
 }

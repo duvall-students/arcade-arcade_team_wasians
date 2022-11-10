@@ -1,7 +1,16 @@
 package gameComponent.NPCObject;
 
 import gameComponent.ControlUnit.GalagaShip;
+
 import javafx.geometry.Point2D;
+
+/**
+ * @author Xu Yan
+ * 
+ * NPCGalaga.java
+ * Implement setting the related properties of different types of flying objects in the Galaga.
+ * 
+ */
 
 public abstract class NPCGalaga extends GameNPC{
 	
@@ -15,6 +24,7 @@ public abstract class NPCGalaga extends GameNPC{
 		NPC_IMAGE_HEIGHT = GENERAL_NPC_HEIGHT;
 	}
 	
+	// assign the moving velocity of the winged
 	public void move (double wingedYVelocity, double elapsedTime, GalagaShip ship) {
 		double xVal = 0;
 		double yVal = wingedYVelocity;
@@ -23,6 +33,7 @@ public abstract class NPCGalaga extends GameNPC{
 		npc.setY(npc.getY() + wingedVelocity.getY() * elapsedTime);
 	}
 	
+	// detect the failure of the game (when any NPC moves below the player's ship)
 	protected void failureCheckForLevel(GalagaShip ship) {
 		if (ship.getBulletSpawnLoc().getY() <= npc.getY() + npc.getFitHeight()) {
 			System.out.println("Oh, NO! You lose! （。>︿<）_θ");

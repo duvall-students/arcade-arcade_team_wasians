@@ -44,11 +44,13 @@ public class Galaga extends Application implements Game {
 	private int levelNum = 1;
 	private int levelUpNum = 1;
 
+	// properties and variables associated with the Galaga
 	private GalagaLevelControl level;
 	private Stage myStage;
 	private Scene myScene;
 	private Group root;
 	private Player player;
+	private PlayerMessaging playerMessaging;
 	private BulletGalaga bullet;
 	private GalagaShip ship;
 	private NPCGalaga npc;
@@ -102,9 +104,10 @@ public class Galaga extends Application implements Game {
 		root.getChildren().add(ship.getShape());
 		
 		// add text
-		root.getChildren().add(PlayerMessaging.displayGalagaLevel(level));
-		root.getChildren().add(PlayerMessaging.displayScore(player));
-		root.getChildren().add(PlayerMessaging.displayStartingMessage());
+		playerMessaging = new PlayerMessaging(player);
+		root.getChildren().add(playerMessaging.displayGalagaLevel(level));
+		root.getChildren().add(playerMessaging.displayScore(player));
+		root.getChildren().add(playerMessaging.displayStartingMessage());
 		
 		// create a place to see the shapes
 		Scene scene = new Scene(root, size, size, background);
@@ -114,13 +117,13 @@ public class Galaga extends Application implements Game {
 	public void step(double elapsedTime) {
 		if (player.isPlayerReady()) {
 			moveFrame(elapsedTime);
-			PlayerMessaging.displayStartingMessage().setText("");
+			playerMessaging.displayStartingMessage().setText("");
 		}
 		else if (player.getHealth() == 0) {
-			PlayerMessaging.displayStartingMessage().setText("");
+			playerMessaging.displayStartingMessage().setText("");
 		}
 		else {
-			PlayerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
+			playerMessaging.displayStartingMessage().setText("Press left or right arrow key to Start");
 		}
 	}
 
@@ -132,9 +135,11 @@ public class Galaga extends Application implements Game {
 		try {
 			for(BulletGalaga bullet : bulletList) {
 				bullet.move(elapsedTime);
-				level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList, ship);
+				level.getElementsCollisionInEachLevel(myStage, root, bullet, player, levelNum, bulletList, ship, playerMessaging);
 			}
-		} catch(Exception e) {}
+		} catch(Exception e) {
+			System.out.println("bullet collided");
+		}
 		
 		if (level.checkIsWinInEachLevel()) {
 			levelNum += levelUpNum;
